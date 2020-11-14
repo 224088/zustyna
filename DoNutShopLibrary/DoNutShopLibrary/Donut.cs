@@ -3,7 +3,7 @@ using System;
 
 namespace DataLayer
 {
-     class Donut
+    public  class Donut
     {
        
         public Donut(string Name, int Id, double Price, DonutTypeEnum Filling)

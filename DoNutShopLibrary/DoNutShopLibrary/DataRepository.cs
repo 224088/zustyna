@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataLayer
 {
-    class DataRepository
+    class DataRepository : IDataRepository
     {
         private DataContext context;
 
