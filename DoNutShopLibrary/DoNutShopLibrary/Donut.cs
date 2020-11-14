@@ -1,38 +1,30 @@
-﻿using System;
+﻿using DataLayer;
+using System;
 
-namespace DoNutShopLibrary
+namespace DataLayer
 {
-    public class Donut
+     class Donut
     {
-        private String Name { get; set; }
-        private int Id { get; set; }
-        private double Price { get; set; }
-        private FType Filling { get; set; }
-
-        public Donut(string name, int id, double price, FType filling)
+       
+        public Donut(string Name, int Id, double Price, DonutTypeEnum Filling)
         {
-            Name = name;
-            Id = id;
-            Price = price;
-            Filling = filling;
+            this.Name = Name;
+            this.Id = Id;
+            this.Price = Price;
+            this.Filling = Filling;
            
         }
+
+        public String Name { get; set; }
+        public int Id { get; set; }
+        public double Price { get; set; }
+
+        public DonutTypeEnum Filling { get; set; }
+
 
         public bool Equals(Donut other)
         {
             return this.Id== other.Id & this.Name == other.Name;
-        }
-
-        public enum FType
-        {
-            Vanilla,
-            Chocolate,
-            Caramel,
-            Apple,
-            Jelly,
-            Strawberry,
-            Lemon,
-            Cinnamon
         }
     }
 }
