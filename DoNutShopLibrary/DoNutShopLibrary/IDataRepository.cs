@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataLayer
 {
-     interface IDataRepository
+     public interface IDataRepository
     {
 
 
@@ -46,9 +46,20 @@ namespace DataLayer
 
          void DeleteEvent(String id);
 
+        int GetDonutState(int id);
+
+
+         Dictionary<int, int> GetAllStates();
+
+
+         void UpdateDonutStateInfo(int ID, int new_state);
+
+
+        void DeleteOneDonutState(int id);
 
 
 
 
-}
+
+    }
 }

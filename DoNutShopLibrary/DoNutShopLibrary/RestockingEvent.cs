@@ -4,9 +4,9 @@ using System.Text;
 
 namespace DataLayer
 {
-    class RestockingEvent : Event
+    public class RestockingEvent : Event
     {
-        public RestockingEvent(string id, State state, Customer customer, DateTime dateTime) : base(id, state, customer, dateTime)
+        public RestockingEvent(string id, StateOfSHOP state, Customer customer, DateTime dateTime) : base(id, state, customer, dateTime)
         {
         }
     }

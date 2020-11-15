@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataLayer
 {
-    class DataRepository : IDataRepository
+    public class DataRepository : IDataRepository
     {
         private DataContext context;
 
@@ -15,18 +15,17 @@ namespace DataLayer
 
 
         //C.R.U.D. (Create, Read, Update, Delete)
-        /* (Add) Dodawanie nowych danych do kolekcji
-        (Get) Odczyt pojedynczych obiektów, np. na podstawie identyfikatora lub pozycji w kolekcji
-        (GetAll) Odczyt wszystkich obiektów z kolekcji
-        (Update) Aktualizacja danych w kolekcji - opcjonalnie, podając obiekt lub pozycję w kolekcji
-        (Delete) Usuwanie wskazanych danych z kolekcji - podając obiekt lub pozycję w kolekcji
-        */
+        /*  (ADD) create or add new entries;
+            (GET and GETALL) read, retrieve, search, or view existing entries;
+            (UPDATE) update or edit existing entries;
+            (DELETE) delete, deactivate, or remove existing entries.
+         */
+
 
         #region Customer
         public void AddCustomer(Customer c)
         {
             context.clients.Add(c);
-
         }
 
         public Customer GetCustomer(String id)
@@ -56,7 +55,7 @@ namespace DataLayer
                     context.clients[i].LastName = C.LastName;
                 }
             }
-            throw new Exception("There is no Customer with this ID");
+            throw new Exception("Client with such ID does not exist");
         }
 
         public void DeleteCustomer(String id)
@@ -73,47 +72,47 @@ namespace DataLayer
 
         #endregion
 
-        #region Donut
-
-        public int ProductCounter { get => ProductCounter; set => ProductCounter = value; }
+        #region Donut CAtalog
 
         public void AddDonut(Donut d)
 
         {
-            context.products.Add(ProductCounter, d);
-            ProductCounter++;
-
+            if (context.catalog.products.ContainsKey(d.Id))
+            {
+                throw new Exception("No such Donut in our DONOT shop");
+            }
+                context.catalog.products.Add(d.Id, d);
         }
 
         public Donut GetDonut(int id)
         {
-            return context.products[id];
+            return context.catalog.products[id];
         }
 
         public IEnumerable<Donut> GetAllDonuts()
         {
-            return context.products.Values;
+            return context.catalog.products.Values;
         }
 
         public void UpdateDonutInfo(Donut D)
         {
-            if (context.products.ContainsKey(D.Id))
+            if (context.catalog.products.ContainsKey(D.Id))
             {
 
-                context.products[D.Id].Name = D.Name;
-                context.products[D.Id].Price = D.Price;
-                context.products[D.Id].Filling = D.Filling;
+                context.catalog.products[D.Id].Name = D.Name;
+                context.catalog.products[D.Id].Price = D.Price;
+                context.catalog.products[D.Id].Filling = D.Filling;
             }
-            throw new Exception("Such Donut with does not exist in our DoNot Shop");
+            throw new Exception("No such Donut in our DONOT shop");
         }
 
         public void DeleteDonut(int id)
         {
-            if (context.products.ContainsKey(id))
+            if (context.catalog.products.ContainsKey(id))
             {
-                context.products.Remove(id);
+                context.catalog.products.Remove(id);
             }
-            throw new Exception("Donut with such id does not exist");
+            throw new Exception("There already is no such donut");
         }
 
         #endregion
@@ -155,14 +154,48 @@ namespace DataLayer
             throw new Exception("Event with such id does not exist");
         }
 
+        #endregion
+
+        #region State
+
+        public int GetDonutState(int id)
+        {
+            return context.shop.Inventory[id];
+        }
+
+        public Dictionary<int, int> GetAllStates()
+        {
+            return context.shop.Inventory;
+        }
+
+        public void UpdateDonutStateInfo(int ID, int new_state)
+        {
+            if (context.catalog.products.ContainsKey(ID))
+            {
+
+                context.shop.Inventory[ID] = new_state;
+            }
+            throw new Exception("No dounut With such ID");
+        }
+
+        public void DeleteOneDonutState(int id)
+        {
+            if (context.shop.Inventory.ContainsKey(id))
+            {
+                context.shop.Inventory.Remove(id);
+            }
+            throw new Exception("There already is no such donut");
+        }
+
+        #endregion
+
+
+
+
+
+
     }
-
-    #endregion
-
-
-
-
-}
+    }
 
 
 

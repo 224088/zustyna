@@ -28,4 +28,7 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {67A22E23-7E73-4EF8-B30A-6B438FE1BDB1}
 	EndGlobalSection
+	GlobalSection(NDepend) = preSolution
+		Project = ".\DoNutShopLibrary1.ndproj"
+	EndGlobalSection
 EndGlobal

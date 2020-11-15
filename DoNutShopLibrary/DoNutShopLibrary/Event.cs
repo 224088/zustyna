@@ -4,15 +4,15 @@ using System.Text;
 
 namespace DataLayer
 {
-    abstract class Event
+    public abstract class Event
     {
         public String Id { get; set; }
         protected DateTime dateTime { get; }
-        protected State state { get; set; }
+        protected StateOfSHOP state { get; set; }
         protected Customer customer { get; set; }
 
         //constructor 
-        public Event(string id, State state, Customer customer, DateTime dateTime)
+        public Event(string id, StateOfSHOP state, Customer customer, DateTime dateTime)
         {
             this.Id = id;
             this.state = state;

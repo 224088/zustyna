@@ -4,14 +4,17 @@ using System.Text;
 
 namespace DataLayer
 {
-     class DataContext
+     public class DataContext
 
     {
+        public Catalog catalog = new Catalog();
+        public List <Event> events = new List<Event>();
+        public StateOfSHOP shop;
+        public List <Customer> clients = new List<Customer>();
 
-        public Dictionary <int, Donut> products;
-        public List <Event> events;
-        public List <State> states;
-        public List <Customer> clients;
-
+        public DataContext(StateOfSHOP shop)
+        {
+            this.shop = shop;
+        }
     }
 }
