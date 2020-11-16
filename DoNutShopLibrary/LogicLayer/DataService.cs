@@ -39,7 +39,10 @@ namespace LogicLayer
         {
             repository.DeleteDonut(id);
         }
-
+        public void GetCustomerById(string id)
+        {
+            repository.GetCustomer(id);
+        }
         public void AddCustomer(Customer customer)
         {
             repository.AddCustomer(customer);
@@ -76,19 +79,53 @@ namespace LogicLayer
 
             foreach (Event myEvent in repository.GetAllEvents())
             {
-                if (myEvent..Equals(reader))
+                if (myEvent.customer.Equals(client))
                 {
-                    events.Add(ev);
+                    allEvents.Add(myEvent);
                 }
             }
-            return events;
+            return allEvents;
+        }
+        public int GetDonutState(int id)
+        {
+            return repository.GetDonutState(id);
         }
 
+
+        public void UpdateDonutStateInfo(int ID, int new_state)
+        {
+            repository.UpdateDonutStateInfo(ID, new_state);
+        }
+
+        public void DeleteOneDonutState(int id)
+        {
+            repository.DeleteOneDonutState(id);
+        }
+        public void BuyDonut(string customerid, int donutid, StateOfSHOP state, DateTime dayOfBuying)
+        {
+            Customer client = repository.GetCustomer(customerid);
+            Donut donut = repository.GetDonut(donutid);
+            
+            if (GetDonutState(donutid) == 0)
+            {
+                throw new InvalidOperationException("There is no such donut in stock at the moment.");
+            }
+
+            BuyingEvent buyEvent = new BuyingEvent(customerid, state, client, dayOfBuying);
+            repository.AddEvent(buyEvent);
+            DeleteOneDonutState(donutid);
+            UpdateDonutStateInfo(donutid, GetDonutState(donutid));
+        }
+           
+
+        
+
+
         /*
-         * Tu powinny byc funkcje istotne dla biznesu  GetDonutByType, GetDonutByID
-         * Funkcje takie jak update i delete powinny zwracac booleany ze operacja sie powiodla
-         *  GetEventsForTheClient, > GetEventsBetween(DateTime start, DateTime end)
-         *  GetEventsForTheDonut
+         //* Tu powinny byc funkcje istotne dla biznesu  GetDonutByType, GetDonutByID +
+         * Funkcje takie jak update i delete powinny zwracac booleany ze operacja sie powiodla -/+
+         //*  GetEventsForTheClient, > GetEventsBetween(DateTime start, DateTime end) +
+        // *  GetEventsForTheDonut -
          *  BuyingDonut   --> W srodu musi byc tworzenie eventu BuyingEvent, dodawanie go do listy eventow w datacontext, zmienianie stanu sklepu
          *  To samo dla restocking
          *  GetBoughtDonutsAndAmount()
