@@ -11,11 +11,17 @@ namespace DataLayer
 
     {
         //first int represents donut id and second quantity of avaible donuts
-        private Dictionary<int, int> inventory = new Dictionary<int, int>();
+        private Dictionary<int, int> inventory;
 
         //lista donutow i ich ID zeby moc rozszyfrowac inventory 
-        private Catalog catalog = new Catalog();
+        private Catalog catalog;
 
+        public StateOfSHOP(Catalog catalog ,Dictionary<int, int> inventory)
+        {
+
+            this.catalog = catalog;
+            this.inventory = inventory;
+        }
 
         public Dictionary<int, int> Inventory { get => inventory; set => inventory = value; }
     }

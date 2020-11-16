@@ -26,8 +26,6 @@ namespace DataLayer
 
          Donut GetDonut(int id);
 
-        int GetDonutsNumber();
-
 
          IEnumerable<Donut> GetAllDonuts();
 

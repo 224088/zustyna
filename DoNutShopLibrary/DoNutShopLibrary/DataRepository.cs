@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace DataLayer
@@ -83,12 +82,6 @@ namespace DataLayer
                 throw new Exception("No such Donut in our DONOT shop");
             }
                 context.catalog.products.Add(d.Id, d);
-        }
-
-        public int GetDonutsNumber()
-        {
-            return context.catalog.products.Count();
-
         }
 
         public Donut GetDonut(int id)
