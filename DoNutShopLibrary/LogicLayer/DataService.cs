@@ -87,8 +87,22 @@ namespace LogicLayer
         public void DeleteOneDonutState(int id)
         {
             repository.DeleteOneDonutState(id);
+            
         }
         //Event
+
+        public void AddEvent(Event myEvent)
+        {
+            repository.AddEvent(myEvent);
+        }
+        public void DeleteEvent(string id)
+        {
+            repository.DeleteEvent(id);
+        }
+        public void GetEventByID(string id)
+        {
+            repository.GetEventById(id);
+        }
         public IEnumerable<Event> GetEventsBetweenTwoDates(DateTime startDate, DateTime endDate)
         {
             List<Event> allEvents = new List<Event>();
