@@ -23,6 +23,27 @@ namespace TestingData
 			generator.GenarateData(our_shop);
 		}
 
+	/*	[TestMethod]
+		public void CustomerAddAndGet()
+		{
+			Customer c = new Customer("Marcela", "Kozak ", "M6");
+			Assert.AreEqual(service.GetAllCustomersNumber(), 3);
+			service.AddCustomer(c);
+			Assert.AreEqual(service.GetAllCustomersNumber(), 4);
+			Customer temp = service.GetCustomer("O7");
+			Assert.AreEqual(temp, c);
+		}*/
+
+		[TestMethod]
+		public void DonutTest()
+        {
+			Donut donut = new Donut("color me impressed", 457, 6.77, DonutTypeEnum.Caramel);
+			service.AddDonut(donut);
+			Assert.AreEqual(donut, service.GetDonutById(457));
+			service.DeleteDonut(457);
+			
+		}
+
 		[TestMethod]
 		public void BuyDonutsTest()
 		{
@@ -30,13 +51,26 @@ namespace TestingData
 			service.AddCustomer(customer);
 			Donut donut = new Donut("Peanut butter&", 876, 8.77, DonutTypeEnum.Jelly);
 			DateTime now = DateTime.Now;
-
-        // Nie dodalas donuta do state of shop wiec nie ma go wogole w inventory zmienilamU ID donuta
-			service.AddDonut(donut);
-			int stateThen = service.GetStateOfDonut(1);
-			service.BuyDonut("W5", 1, now, 17);
+			//service.AddDonut(donut);
+			//service.UpdateDonutStateInfo(876, 50);
+			service.AddandUpdate(donut, 50);
+			int stateThen = service.GetStateOfDonut(876);
+			service.BuyDonut("W5", 876 , now, 17);
 			Assert.AreEqual(stateThen - 17, service.GetStateOfDonut(876));
 
 		}
+
+		/*[TestMethod]
+
+		public void RestockTest()
+        {
+			Customer supplier = new Customer("Britney", "Spears", "B11");
+			Donut donut = new Donut("Hit me baby one more time", 997, 4.20, DonutTypeEnum.Vanilla);
+			DateTime now = DateTime.Now;
+			service.UpdateDonutStateInfo(997, 0);
+			int stateThen = service.GetStateOfDonut(997);
+			service.Restock("B11", 997, now, 112);
+			Assert.AreEqual(stateThen + 112, service.GetStateOfDonut(997));
+		}*/
 	}
 }

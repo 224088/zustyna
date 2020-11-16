@@ -67,6 +67,8 @@ namespace LogicLayer
         {
             repository.DeleteCustomer(id);
         }
+
+     
         //State
 
         public void UpdateDonutStateInfo(int ID, int new_state)
@@ -146,7 +148,12 @@ namespace LogicLayer
 
         }
 
-
+        public void AddandUpdate (Donut donut, int amount)
+        {
+            
+            AddDonut(donut);
+            UpdateDonutStateInfo(donut.Id, amount );
+        }
 
         /*
          //* Tu powinny byc funkcje istotne dla biznesu  GetDonutByType, GetDonutByID +
