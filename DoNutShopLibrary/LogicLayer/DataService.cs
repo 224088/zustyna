@@ -33,6 +33,13 @@ namespace LogicLayer
         {
             return repository.GetDonutsNumber();
         }
+
+        public int GetAllCustomersNumber()
+        {
+            return repository.GetAllCustomersNumber();
+
+        }
+
         public int GetStateOfDonut(int id)
         {
             return repository.GetDonutState(id);
@@ -49,17 +56,20 @@ namespace LogicLayer
         }
 
         //Customer
-        public void GetCustomerById(string id)
+
+
+        public Customer GetCustomerById(string id)
         {
-            repository.GetCustomer(id);
+           return repository.GetCustomer(id);
         }
         public void AddCustomer(Customer customer)
         {
             repository.AddCustomer(customer);
         }
         
-        public void UpdateCustomerInfo(Customer C)
+        public void UpdateCustomerInfo(String first_name, String last_name, String Id)
         {
+            Customer C = new Customer(first_name, last_name, Id);
             repository.UpdateCustomerInfo(C);
         }
 
@@ -68,8 +78,18 @@ namespace LogicLayer
             repository.DeleteCustomer(id);
         }
 
+        public int GetCustomerNumber()
+        {
+            return repository.GetAllCustomersNumber();
+        }
+
      
         //State
+
+       public StateOfSHOP GetState()
+        {
+            return repository.GetState();
+        }
 
         public void UpdateDonutStateInfo(int ID, int new_state)
         {
@@ -82,6 +102,16 @@ namespace LogicLayer
             
         }
         //Event
+
+            public void AddEvent(Event e)
+        {
+            repository.AddEvent(e);
+        }
+       
+            public int GetAllEventsNumber()
+        {
+            return repository.GetAllEventsNumber();
+        }
 
        
         public void DeleteEvent(string id)
