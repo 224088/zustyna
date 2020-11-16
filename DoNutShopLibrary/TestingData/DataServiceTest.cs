@@ -6,7 +6,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestingData
 {
-	class DataServiceTests
+    [TestClass]
+    public class DataServiceTests
 	{
 
 		private DataService service;
@@ -30,8 +31,8 @@ namespace TestingData
 			Donut donut = new Donut("Peanut butter&", 876, 8.77, DonutTypeEnum.Jelly);
 			DateTime now = DateTime.Now;
 			service.AddDonut(donut);
-			int stateThen = service.GetStateOfDonut(876);
-			service.BuyDonut("W5", 876, now, 17);
+			int stateThen = service.GetStateOfDonut(1);
+			service.BuyDonut("W5", 1, now, 17);
 			Assert.AreEqual(stateThen - 17, service.GetStateOfDonut(876));
 
 		}
