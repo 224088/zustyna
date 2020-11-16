@@ -21,6 +21,16 @@ namespace LogicLayer
 
 
 
+        public Donut GetDonutByType(DonutTypeEnum type)
+        {
+            return repository.GetDonutByType(type);
+        }
+        public Donut GetDonutById(int id)
+        {
+            return repository.GetDonut(id);
+        }
+
+
 
         /*
          * Tu powinny byc funkcje istotne dla biznesu  GetDonutByType, GetDonutByID

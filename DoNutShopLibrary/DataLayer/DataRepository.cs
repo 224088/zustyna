@@ -95,7 +95,17 @@ namespace DataLayer
         {
             return context.catalog.products[id];
         }
-
+        public Donut GetDonutByType(DonutTypeEnum type)
+        {
+            foreach (var donut in context.catalog.products.ToArray())
+            {
+                if (context.catalog.products[donut.Key].Filling == type)
+                {
+                    return context.catalog.products[donut.Key];
+                }
+            }
+            throw new Exception("There are no books of this genre in the library.");
+        }
         public IEnumerable<Donut> GetAllDonuts()
         {
             return context.catalog.products.Values;
