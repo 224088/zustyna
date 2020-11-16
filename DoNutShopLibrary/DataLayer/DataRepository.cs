@@ -61,6 +61,7 @@ namespace DataLayer
                 {
                     context.clients[i].FirstName = C.FirstName;
                     context.clients[i].LastName = C.LastName;
+                    return;
                 }
             }
             throw new Exception("Client with such ID does not exist");
@@ -73,6 +74,7 @@ namespace DataLayer
                 if (context.clients[i].Id == id)
                 {
                     context.clients.Remove(context.clients[i]);
+                    return;
                 }
             }
             throw new Exception("Client with such ID does not exist");
@@ -126,6 +128,7 @@ namespace DataLayer
                 context.catalog.products[D.Id].Name = D.Name;
                 context.catalog.products[D.Id].Price = D.Price;
                 context.catalog.products[D.Id].Filling = D.Filling;
+                return;
             }
             throw new Exception("No such Donut in our DONOT shop");
         }
@@ -135,6 +138,7 @@ namespace DataLayer
             if (context.catalog.products.ContainsKey(id))
             {
                 context.catalog.products.Remove(id);
+                return;
             }
             throw new Exception("There already is no such donut");
         }
@@ -178,6 +182,7 @@ namespace DataLayer
                 if (context.events[i].Id == id)
                 {
                     context.events.Remove(context.events[i]);
+                    return;
                 }
             }
             throw new Exception("Event with such id does not exist");
@@ -208,6 +213,7 @@ namespace DataLayer
             {
 
                 context.shop.inventory[ID] = new_state;
+                return;
             }
             throw new Exception("No dounut With such ID");
         }
@@ -217,6 +223,7 @@ namespace DataLayer
             if (context.shop.inventory.ContainsKey(id))
             {
                 context.shop.inventory.Remove(id);
+                return;
             }
             throw new Exception("There already is no such donut");
         }
