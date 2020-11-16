@@ -104,7 +104,7 @@ namespace DataLayer
                     return context.catalog.products[donut.Key];
                 }
             }
-            throw new Exception("There are no books of this genre in the library.");
+            throw new Exception("There is no donut with this filling in the shop");
         }
         public IEnumerable<Donut> GetAllDonuts()
         {
