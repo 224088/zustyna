@@ -8,8 +8,8 @@ namespace DataLayer
     {
         public String Id { get; set; }
         public DateTime dateTime { get; }
-        protected StateOfSHOP state { get; set; }
-        protected Customer customer { get; set; }
+        public StateOfSHOP state { get; set; }
+        public Customer customer { get; set; }
 
         //constructor 
         public Event(string id, StateOfSHOP state, Customer customer, DateTime dateTime)

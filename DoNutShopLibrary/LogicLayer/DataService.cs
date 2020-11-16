@@ -57,11 +57,26 @@ namespace LogicLayer
         }
         public IEnumerable<Event> GetEventsBetweenTwoDates(DateTime startDate, DateTime endDate)
         {
-            List<Event> events = new List<Event>();
+            List<Event> allEvents = new List<Event>();
 
-            foreach (Event ev in repository.GetAllEvents())
+            foreach (Event myEvent in repository.GetAllEvents())
             {
-                if (ev.dateTime >= startDate && ev.dateTime <= endDate)
+                if (myEvent.dateTime >= startDate && myEvent.dateTime <= endDate)
+                {
+                    allEvents.Add(myEvent);
+                }
+            }
+            return allEvents;
+        }
+
+        public IEnumerable<Event> GetEventsForTheClient(string id)
+        {
+            Customer client = repository.GetCustomer(id);
+            List<Event> allEvents = new List<Event>();
+
+            foreach (Event myEvent in repository.GetAllEvents())
+            {
+                if (myEvent..Equals(reader))
                 {
                     events.Add(ev);
                 }
