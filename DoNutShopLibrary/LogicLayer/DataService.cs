@@ -19,7 +19,7 @@ namespace LogicLayer
             this.repository = repository;
         }
 
-
+        //Donut
 
         public Donut GetDonutByType(DonutTypeEnum type)
         {
@@ -28,6 +28,14 @@ namespace LogicLayer
         public Donut GetDonutById(int id)
         {
             return repository.GetDonut(id);
+        }
+        public int GetDonutByNumber()
+        {
+            return repository.GetDonutsNumber();
+        }
+        public int GetDonutByState(int id)
+        {
+            return repository.GetDonutState(id);
         }
 
         public void AddDonut(Donut donut)
@@ -39,6 +47,8 @@ namespace LogicLayer
         {
             repository.DeleteDonut(id);
         }
+
+        //Customer
         public void GetCustomerById(string id)
         {
             repository.GetCustomer(id);
@@ -47,17 +57,38 @@ namespace LogicLayer
         {
             repository.AddCustomer(customer);
         }
-
+        
         public void UpdateCustomerInfo(Customer C)
         {
             repository.UpdateCustomerInfo(C);
         }
 
-
         public void DeleteCustomer(String id)
         {
             repository.DeleteCustomer(id);
         }
+        //State
+
+        public int GetDonutState(int id)
+        {
+            return repository.GetDonutState(id);
+        }
+        public StateOfSHOP GetState()
+        {
+            return repository.GetState();
+        }
+
+
+        public void UpdateDonutStateInfo(int ID, int new_state)
+        {
+            repository.UpdateDonutStateInfo(ID, new_state);
+        }
+
+        public void DeleteOneDonutState(int id)
+        {
+            repository.DeleteOneDonutState(id);
+        }
+        //Event
         public IEnumerable<Event> GetEventsBetweenTwoDates(DateTime startDate, DateTime endDate)
         {
             List<Event> allEvents = new List<Event>();
@@ -86,35 +117,21 @@ namespace LogicLayer
             }
             return allEvents;
         }
-        public int GetDonutState(int id)
-        {
-            return repository.GetDonutState(id);
-        }
-
-
-        public void UpdateDonutStateInfo(int ID, int new_state)
-        {
-            repository.UpdateDonutStateInfo(ID, new_state);
-        }
-
-        public void DeleteOneDonutState(int id)
-        {
-            repository.DeleteOneDonutState(id);
-        }
-        public void BuyDonut(string customerid, int donutid, StateOfSHOP state, DateTime dayOfBuying)
+     
+        public void BuyDonut(string customerid, int donutid, DateTime dayOfBuying, int amountOfDonuts)
         {
             Customer client = repository.GetCustomer(customerid);
             Donut donut = repository.GetDonut(donutid);
-            
-            if (GetDonutState(donutid) == 0)
+            int amountLeft = GetDonutState(donutid) - amountOfDonuts;
+            if (GetDonutState(donutid) < amountOfDonuts)
             {
-                throw new InvalidOperationException("There is no such donut in stock at the moment.");
+                throw new InvalidOperationException("There is not enough donuts in the shop.");
             }
 
-            BuyingEvent buyEvent = new BuyingEvent(customerid, state, client, dayOfBuying);
+            BuyingEvent buyEvent = new BuyingEvent(customerid, GetState(), client, dayOfBuying);
             repository.AddEvent(buyEvent);
-            DeleteOneDonutState(donutid);
-            UpdateDonutStateInfo(donutid, GetDonutState(donutid));
+            UpdateDonutStateInfo(donutid, amountLeft);
+            
         }
            
 

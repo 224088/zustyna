@@ -180,6 +180,11 @@ namespace DataLayer
             return context.shop.inventory[id];
         }
 
+        public StateOfSHOP GetState()
+        {
+            return context.shop;
+        }
+
         public Dictionary<int, int> GetAllStates()
         {
             return context.shop.inventory;

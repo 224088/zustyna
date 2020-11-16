@@ -60,7 +60,7 @@ namespace DataLayer
 
         void DeleteOneDonutState(int id);
 
-
+        StateOfSHOP GetState();
 
 
 
