@@ -30,6 +30,8 @@ namespace TestingData
 			service.AddCustomer(customer);
 			Donut donut = new Donut("Peanut butter&", 876, 8.77, DonutTypeEnum.Jelly);
 			DateTime now = DateTime.Now;
+
+        // Nie dodalas donuta do state of shop wiec nie ma go wogole w inventory zmienilamU ID donuta
 			service.AddDonut(donut);
 			int stateThen = service.GetStateOfDonut(1);
 			service.BuyDonut("W5", 1, now, 17);
