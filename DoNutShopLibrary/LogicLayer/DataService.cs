@@ -55,13 +55,13 @@ namespace LogicLayer
         {
             repository.DeleteCustomer(id);
         }
-        public IEnumerable<Event> GetEventsBetweenTwoDates(DateTime start, DateTime end)
+        public IEnumerable<Event> GetEventsBetweenTwoDates(DateTime startDate, DateTime endDate)
         {
             List<Event> events = new List<Event>();
 
             foreach (Event ev in repository.GetAllEvents())
             {
-                if (ev.dateTime >= start && ev.dateTime <= end)
+                if (ev.dateTime >= startDate && ev.dateTime <= endDate)
                 {
                     events.Add(ev);
                 }
