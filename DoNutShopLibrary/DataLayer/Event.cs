@@ -7,7 +7,7 @@ namespace DataLayer
     public abstract class Event
     {
         public String Id { get; set; }
-        protected DateTime dateTime { get; }
+        public DateTime dateTime { get; }
         protected StateOfSHOP state { get; set; }
         protected Customer customer { get; set; }
 

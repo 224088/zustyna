@@ -45,11 +45,29 @@ namespace LogicLayer
             repository.AddCustomer(customer);
         }
 
+        public void UpdateCustomerInfo(Customer C)
+        {
+            repository.UpdateCustomerInfo(C);
+        }
+
+
         public void DeleteCustomer(String id)
         {
             repository.DeleteCustomer(id);
         }
+        public IEnumerable<Event> GetEventsBetweenTwoDates(DateTime start, DateTime end)
+        {
+            List<Event> events = new List<Event>();
 
+            foreach (Event ev in repository.GetAllEvents())
+            {
+                if (ev.dateTime >= start && ev.dateTime <= end)
+                {
+                    events.Add(ev);
+                }
+            }
+            return events;
+        }
 
         /*
          * Tu powinny byc funkcje istotne dla biznesu  GetDonutByType, GetDonutByID
