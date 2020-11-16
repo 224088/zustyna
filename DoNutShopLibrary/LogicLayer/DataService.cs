@@ -134,9 +134,18 @@ namespace LogicLayer
             UpdateDonutStateInfo(donutid, amountLeft);
             
         }
-           
 
-        
+        public void Restock(string supplierid, int donutid, DateTime dayOfRestock, int amountofDonutsProvided)
+        {
+            Customer supplier = repository.GetCustomer(supplierid);
+            int newAmount = amountofDonutsProvided + GetStateOfDonut(donutid);
+
+            RestockingEvent restockEvent = new RestockingEvent(supplierid, repository.GetState(), supplier, dayOfRestock);
+            repository.AddEvent(restockEvent);
+            UpdateDonutStateInfo(donutid, newAmount);
+
+        }
+
 
 
         /*

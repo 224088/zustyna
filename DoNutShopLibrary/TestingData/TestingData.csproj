@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataServiceTests.cs" />
     <Compile Include="EmptyGenerationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomTest.cs" />
@@ -62,6 +63,10 @@
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">
       <Project>{fc86e59a-7485-41ab-81a2-6fad8bed6568}</Project>
       <Name>DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicLayer\LogicLayer.csproj">
+      <Project>{deea8851-12b8-4ffc-bf91-749311f117ad}</Project>
+      <Name>LogicLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
