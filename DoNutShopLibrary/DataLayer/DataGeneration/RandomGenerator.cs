@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataLayer.DataGeneration
 {
-    class RandomGenerator : IGenerator
+    public class RandomGenerator : IGenerator
     {
 
         private static Random random = new Random();

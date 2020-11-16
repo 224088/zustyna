@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataLayer.DataGeneration
 {
-    class FixedGenerator : IGenerator
+     public class FixedGenerator : IGenerator
     {
 
         public void GenarateData(DataContext data)
@@ -16,7 +16,7 @@ namespace DataLayer.DataGeneration
             Donut d3 = new Donut("I dream a Cream ", 3, 5.6, DonutTypeEnum.Vanilla);
             data.catalog.products.Add(3, d3);
             Donut d4 = new Donut("Big Apple", 4, 6.8, DonutTypeEnum.Apple);
-            data.catalog.products.Add(3, d3);
+            data.catalog.products.Add(4, d4);
 
 
             Customer c1 = new Customer("Ola", "Nowak", "O1");

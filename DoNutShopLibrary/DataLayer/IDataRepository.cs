@@ -22,7 +22,9 @@ namespace DataLayer
 
         void AddDonut(Donut d);
 
+        int GetAllEventsNumber();
 
+        int GetAllCustomersNumber();
 
         Donut GetDonut(int id);
        

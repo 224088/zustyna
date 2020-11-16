@@ -29,11 +29,11 @@ namespace LogicLayer
         {
             return repository.GetDonut(id);
         }
-        public int GetDonutByNumber()
+        public int GeNumberOfDonuts()
         {
             return repository.GetDonutsNumber();
         }
-        public int GetDonutByState(int id)
+        public int GetStateOfDonut(int id)
         {
             return repository.GetDonutState(id);
         }
@@ -69,16 +69,6 @@ namespace LogicLayer
         }
         //State
 
-        public int GetDonutState(int id)
-        {
-            return repository.GetDonutState(id);
-        }
-        public StateOfSHOP GetState()
-        {
-            return repository.GetState();
-        }
-
-
         public void UpdateDonutStateInfo(int ID, int new_state)
         {
             repository.UpdateDonutStateInfo(ID, new_state);
@@ -91,10 +81,7 @@ namespace LogicLayer
         }
         //Event
 
-        public void AddEvent(Event myEvent)
-        {
-            repository.AddEvent(myEvent);
-        }
+       
         public void DeleteEvent(string id)
         {
             repository.DeleteEvent(id);
@@ -136,13 +123,13 @@ namespace LogicLayer
         {
             Customer client = repository.GetCustomer(customerid);
             Donut donut = repository.GetDonut(donutid);
-            int amountLeft = GetDonutState(donutid) - amountOfDonuts;
-            if (GetDonutState(donutid) < amountOfDonuts)
+            int amountLeft = GetStateOfDonut(donutid) - amountOfDonuts;
+            if (GetStateOfDonut(donutid) < amountOfDonuts)
             {
                 throw new InvalidOperationException("There is not enough donuts in the shop.");
             }
 
-            BuyingEvent buyEvent = new BuyingEvent(customerid, GetState(), client, dayOfBuying);
+            BuyingEvent buyEvent = new BuyingEvent(customerid, repository.GetState(), client, dayOfBuying);
             repository.AddEvent(buyEvent);
             UpdateDonutStateInfo(donutid, amountLeft);
             

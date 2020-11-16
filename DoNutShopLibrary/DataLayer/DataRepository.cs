@@ -46,6 +46,13 @@ namespace DataLayer
             return context.clients;
         }
 
+        public int GetAllCustomersNumber()
+        {
+            return context.clients.Count;
+        }
+
+
+
         public void UpdateCustomerInfo(Customer C)
         {
             for (int i = 0; i < context.clients.Count; i++)
@@ -139,6 +146,11 @@ namespace DataLayer
         public List<Event> GetAllEvents()
         {
             return context.events;
+        }
+
+        public int GetAllEventsNumber()
+        {
+            return context.events.Count;
         }
 
         public Event GetEventById(String id)

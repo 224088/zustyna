@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="EmptyGenerationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomTest.cs" />
+    <Compile Include="FixedGenerationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
