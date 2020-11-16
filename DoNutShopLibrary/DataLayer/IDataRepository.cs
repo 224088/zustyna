@@ -24,7 +24,8 @@ namespace DataLayer
 
 
 
-         Donut GetDonut(int id);
+        Donut GetDonut(int id);
+       
         Donut GetDonutByType(DonutTypeEnum type);
         int GetDonutsNumber();
 

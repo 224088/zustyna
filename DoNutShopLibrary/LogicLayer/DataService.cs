@@ -30,6 +30,15 @@ namespace LogicLayer
             return repository.GetDonut(id);
         }
 
+        public void AddDonut(Donut donut)
+        {
+         repository.AddDonut(donut);
+        }
+
+        public void DeleteDonut(int id)
+        {
+            repository.DeleteDonut(id);
+        }
 
 
         /*
