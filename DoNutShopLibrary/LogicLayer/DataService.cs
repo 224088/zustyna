@@ -40,6 +40,16 @@ namespace LogicLayer
             repository.DeleteDonut(id);
         }
 
+        public void AddCustomer(Customer customer)
+        {
+            repository.AddCustomer(customer);
+        }
+
+        public void DeleteCustomer(String id)
+        {
+            repository.DeleteCustomer(id);
+        }
+
 
         /*
          * Tu powinny byc funkcje istotne dla biznesu  GetDonutByType, GetDonutByID
