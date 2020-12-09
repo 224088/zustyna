@@ -1,0 +1,40 @@
+CREATE DATABASE donut;
+USE donut;
+
+CREATE TABLE customer(
+	customer_id INT NOT NULL,
+	customer_f_name VARCHAR(50),
+	customer_l_name VARCHAR(50),
+
+CONSTRAINT customer_PK PRIMARY KEY(customer_id)
+);
+
+CREATE TABLE donut(
+	donut_id INT NOT NULL,
+	donut_name VARCHAR(50),
+	filling VARCHAR(50), 
+	price INT,
+
+CONSTRAINT donut_PK PRIMARY KEY(donut_id)
+);
+
+CREATE TABLE state(
+	state_id INT NOT NULL,
+	is_stocking BIT NOT NULL,
+	donut INT NOT NULL,
+
+CONSTRAINT state_PK PRIMARY KEY(state_id),
+CONSTRAINT state_FK FOREIGN KEY(donut) REFERENCES donut(donut_id)
+);
+
+CREATE TABLE event(
+	event_id INT NOT NULL,
+	event_time DATE NOT NULL, 
+	is_stocking_event BIT NOT NULL,
+	state INT NOT NULL,
+	customer INT NOT NULL,
+
+CONSTRAINT event_PK PRIMARY KEY(event_id),
+CONSTRAINT event_FK1 FOREIGN KEY(state) REFERENCES state(state_id),
+CONSTRAINT event_FK2 FOREIGN KEY(customer) REFERENCES customer(customer_id)
+);
