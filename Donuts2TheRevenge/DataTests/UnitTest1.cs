@@ -25,8 +25,10 @@ namespace DataTest
                 donut donut = new donut();
                 donut.donut_id = 2;
                 donut.donut_name = "FilledWithJoy";
-                donut.fillling = "Joy";
+                donut.filling = "Joy";
                 donut.price = 8;
+                donut.quantity = 0;
+
 
 
 
@@ -39,8 +41,9 @@ namespace DataTest
                 donut mydonut = database.donut.FirstOrDefault(doonut => doonut.donut_id.Equals(2));
                 Assert.AreEqual(mydonut.donut_id, 2);
                 Assert.AreEqual(mydonut.donut_name, "FilledWithJoy");
-                Assert.AreEqual(mydonut.fillling, "Joy");
+                Assert.AreEqual(mydonut.filling, "Joy");
                 Assert.AreEqual(mydonut.price, 8);
+                Assert.AreEqual(mydonut.quantity, 0);
 
 
 
@@ -59,8 +62,9 @@ namespace DataTest
                 donut donut = new donut();
                 donut.donut_id = 2;
                 donut.donut_name = "FilledWithJoy";
-                donut.fillling = "Joy";
+                donut.filling = "Joy";
                 donut.price = 8;
+                donut.quantity = 0;
 
 
 

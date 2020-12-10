@@ -11,13 +11,18 @@
 
 namespace Data
 {
-    using System;
-    using System.ComponentModel;
-    using System.Data.Linq;
-    using System.Data.Linq.Mapping;
-
-
-    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="donut")]
+	using System.Data.Linq;
+	using System.Data.Linq.Mapping;
+	using System.Data;
+	using System.Collections.Generic;
+	using System.Reflection;
+	using System.Linq;
+	using System.Linq.Expressions;
+	using System.ComponentModel;
+	using System;
+	
+	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="donut")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -31,9 +36,6 @@ namespace Data
     partial void Insertdonut(donut instance);
     partial void Updatedonut(donut instance);
     partial void Deletedonut(donut instance);
-    partial void Insertstate(state instance);
-    partial void Updatestate(state instance);
-    partial void Deletestate(state instance);
     partial void Insertevent(@event instance);
     partial void Updateevent(@event instance);
     partial void Deleteevent(@event instance);
@@ -82,14 +84,6 @@ namespace Data
 			get
 			{
 				return this.GetTable<donut>();
-			}
-		}
-		
-		public System.Data.Linq.Table<state> state
-		{
-			get
-			{
-				return this.GetTable<state>();
 			}
 		}
 		
@@ -194,7 +188,7 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="customer_event", Storage="_event", ThisKey="customer_id", OtherKey="reader")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="customer_event", Storage="_event", ThisKey="customer_id", OtherKey="customer")]
 		public EntitySet<@event> @event
 		{
 			get
@@ -230,13 +224,13 @@ namespace Data
 		private void attach_event(@event entity)
 		{
 			this.SendPropertyChanging();
-			entity.customer = this;
+			entity.customer1 = this;
 		}
 		
 		private void detach_event(@event entity)
 		{
 			this.SendPropertyChanging();
-			entity.customer = null;
+			entity.customer1 = null;
 		}
 	}
 	
@@ -250,11 +244,13 @@ namespace Data
 		
 		private string _donut_name;
 		
-		private string _fillling;
+		private string _filling;
 		
 		private System.Nullable<int> _price;
 		
-		private EntitySet<state> _state;
+		private System.Nullable<int> _quantity;
+		
+		private EntitySet<@event> _event;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -264,15 +260,17 @@ namespace Data
     partial void Ondonut_idChanged();
     partial void Ondonut_nameChanging(string value);
     partial void Ondonut_nameChanged();
-    partial void OnfilllingChanging(string value);
-    partial void OnfilllingChanged();
+    partial void OnfillingChanging(string value);
+    partial void OnfillingChanged();
     partial void OnpriceChanging(System.Nullable<int> value);
     partial void OnpriceChanged();
+    partial void OnquantityChanging(System.Nullable<int> value);
+    partial void OnquantityChanged();
     #endregion
 		
 		public donut()
 		{
-			this._state = new EntitySet<state>(new Action<state>(this.attach_state), new Action<state>(this.detach_state));
+			this._event = new EntitySet<@event>(new Action<@event>(this.attach_event), new Action<@event>(this.detach_event));
 			OnCreated();
 		}
 		
@@ -316,22 +314,22 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fillling", DbType="VarChar(50)")]
-		public string fillling
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_filling", DbType="VarChar(50)")]
+		public string filling
 		{
 			get
 			{
-				return this._fillling;
+				return this._filling;
 			}
 			set
 			{
-				if ((this._fillling != value))
+				if ((this._filling != value))
 				{
-					this.OnfilllingChanging(value);
+					this.OnfillingChanging(value);
 					this.SendPropertyChanging();
-					this._fillling = value;
-					this.SendPropertyChanged("fillling");
-					this.OnfilllingChanged();
+					this._filling = value;
+					this.SendPropertyChanged("filling");
+					this.OnfillingChanged();
 				}
 			}
 		}
@@ -356,152 +354,27 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="donut_state", Storage="_state", ThisKey="donut_id", OtherKey="donut")]
-		public EntitySet<state> state
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quantity", DbType="Int")]
+		public System.Nullable<int> quantity
 		{
 			get
 			{
-				return this._state;
+				return this._quantity;
 			}
 			set
 			{
-				this._state.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_state(state entity)
-		{
-			this.SendPropertyChanging();
-			entity.donut1 = this;
-		}
-		
-		private void detach_state(state entity)
-		{
-			this.SendPropertyChanging();
-			entity.donut1 = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.state")]
-	public partial class state : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _state_id;
-		
-		private bool _is_stocked;
-		
-		private int _donut;
-		
-		private EntitySet<@event> _event;
-		
-		private EntityRef<donut> _donut1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onstate_idChanging(int value);
-    partial void Onstate_idChanged();
-    partial void Onis_stockedChanging(bool value);
-    partial void Onis_stockedChanged();
-    partial void OndonutChanging(int value);
-    partial void OndonutChanged();
-    #endregion
-		
-		public state()
-		{
-			this._event = new EntitySet<@event>(new Action<@event>(this.attach_event), new Action<@event>(this.detach_event));
-			this._donut1 = default(EntityRef<donut>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int state_id
-		{
-			get
-			{
-				return this._state_id;
-			}
-			set
-			{
-				if ((this._state_id != value))
+				if ((this._quantity != value))
 				{
-					this.Onstate_idChanging(value);
+					this.OnquantityChanging(value);
 					this.SendPropertyChanging();
-					this._state_id = value;
-					this.SendPropertyChanged("state_id");
-					this.Onstate_idChanged();
+					this._quantity = value;
+					this.SendPropertyChanged("quantity");
+					this.OnquantityChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_is_stocked", DbType="Bit NOT NULL")]
-		public bool is_stocked
-		{
-			get
-			{
-				return this._is_stocked;
-			}
-			set
-			{
-				if ((this._is_stocked != value))
-				{
-					this.Onis_stockedChanging(value);
-					this.SendPropertyChanging();
-					this._is_stocked = value;
-					this.SendPropertyChanged("is_stocked");
-					this.Onis_stockedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_donut", DbType="Int NOT NULL")]
-		public int donut
-		{
-			get
-			{
-				return this._donut;
-			}
-			set
-			{
-				if ((this._donut != value))
-				{
-					if (this._donut1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OndonutChanging(value);
-					this.SendPropertyChanging();
-					this._donut = value;
-					this.SendPropertyChanged("donut");
-					this.OndonutChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="state_event", Storage="_event", ThisKey="state_id", OtherKey="state")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="donut_event", Storage="_event", ThisKey="donut_id", OtherKey="donut")]
 		public EntitySet<@event> @event
 		{
 			get
@@ -511,40 +384,6 @@ namespace Data
 			set
 			{
 				this._event.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="donut_state", Storage="_donut1", ThisKey="donut", OtherKey="donut_id", IsForeignKey=true)]
-		public donut donut1
-		{
-			get
-			{
-				return this._donut1.Entity;
-			}
-			set
-			{
-				donut previousValue = this._donut1.Entity;
-				if (((previousValue != value) 
-							|| (this._donut1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._donut1.Entity = null;
-						previousValue.state.Remove(this);
-					}
-					this._donut1.Entity = value;
-					if ((value != null))
-					{
-						value.state.Add(this);
-						this._donut = value.donut_id;
-					}
-					else
-					{
-						this._donut = default(int);
-					}
-					this.SendPropertyChanged("donut1");
-				}
 			}
 		}
 		
@@ -571,13 +410,13 @@ namespace Data
 		private void attach_event(@event entity)
 		{
 			this.SendPropertyChanging();
-			entity.state1 = this;
+			entity.donut1 = this;
 		}
 		
 		private void detach_event(@event entity)
 		{
 			this.SendPropertyChanging();
-			entity.state1 = null;
+			entity.donut1 = null;
 		}
 	}
 	
@@ -593,13 +432,15 @@ namespace Data
 		
 		private bool _is_stocking_event;
 		
-		private int _state;
+		private int _amount;
 		
-		private int _reader;
+		private int _donut;
 		
-		private EntityRef<state> _state1;
+		private int _customer;
 		
-		private EntityRef<customer> _customer;
+		private EntityRef<donut> _donut1;
+		
+		private EntityRef<customer> _customer1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -611,16 +452,18 @@ namespace Data
     partial void Onevent_timeChanged();
     partial void Onis_stocking_eventChanging(bool value);
     partial void Onis_stocking_eventChanged();
-    partial void OnstateChanging(int value);
-    partial void OnstateChanged();
-    partial void OnreaderChanging(int value);
-    partial void OnreaderChanged();
+    partial void OnamountChanging(int value);
+    partial void OnamountChanged();
+    partial void OndonutChanging(int value);
+    partial void OndonutChanged();
+    partial void OncustomerChanging(int value);
+    partial void OncustomerChanged();
     #endregion
 		
 		public @event()
 		{
-			this._state1 = default(EntityRef<state>);
-			this._customer = default(EntityRef<customer>);
+			this._donut1 = default(EntityRef<donut>);
+			this._customer1 = default(EntityRef<customer>);
 			OnCreated();
 		}
 		
@@ -684,118 +527,138 @@ namespace Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state", DbType="Int NOT NULL")]
-		public int state
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_amount", DbType="Int NOT NULL")]
+		public int amount
 		{
 			get
 			{
-				return this._state;
+				return this._amount;
 			}
 			set
 			{
-				if ((this._state != value))
+				if ((this._amount != value))
 				{
-					if (this._state1.HasLoadedOrAssignedValue)
+					this.OnamountChanging(value);
+					this.SendPropertyChanging();
+					this._amount = value;
+					this.SendPropertyChanged("amount");
+					this.OnamountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_donut", DbType="Int NOT NULL")]
+		public int donut
+		{
+			get
+			{
+				return this._donut;
+			}
+			set
+			{
+				if ((this._donut != value))
+				{
+					if (this._donut1.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnstateChanging(value);
+					this.OndonutChanging(value);
 					this.SendPropertyChanging();
-					this._state = value;
-					this.SendPropertyChanged("state");
-					this.OnstateChanged();
+					this._donut = value;
+					this.SendPropertyChanged("donut");
+					this.OndonutChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_reader", DbType="Int NOT NULL")]
-		public int reader
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_customer", DbType="Int NOT NULL")]
+		public int customer
 		{
 			get
 			{
-				return this._reader;
+				return this._customer;
 			}
 			set
 			{
-				if ((this._reader != value))
+				if ((this._customer != value))
 				{
-					if (this._customer.HasLoadedOrAssignedValue)
+					if (this._customer1.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnreaderChanging(value);
+					this.OncustomerChanging(value);
 					this.SendPropertyChanging();
-					this._reader = value;
-					this.SendPropertyChanged("reader");
-					this.OnreaderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="state_event", Storage="_state1", ThisKey="state", OtherKey="state_id", IsForeignKey=true)]
-		public state state1
-		{
-			get
-			{
-				return this._state1.Entity;
-			}
-			set
-			{
-				state previousValue = this._state1.Entity;
-				if (((previousValue != value) 
-							|| (this._state1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._state1.Entity = null;
-						previousValue.@event.Remove(this);
-					}
-					this._state1.Entity = value;
-					if ((value != null))
-					{
-						value.@event.Add(this);
-						this._state = value.state_id;
-					}
-					else
-					{
-						this._state = default(int);
-					}
-					this.SendPropertyChanged("state1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="customer_event", Storage="_customer", ThisKey="reader", OtherKey="customer_id", IsForeignKey=true)]
-		public customer customer
-		{
-			get
-			{
-				return this._customer.Entity;
-			}
-			set
-			{
-				customer previousValue = this._customer.Entity;
-				if (((previousValue != value) 
-							|| (this._customer.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._customer.Entity = null;
-						previousValue.@event.Remove(this);
-					}
-					this._customer.Entity = value;
-					if ((value != null))
-					{
-						value.@event.Add(this);
-						this._reader = value.customer_id;
-					}
-					else
-					{
-						this._reader = default(int);
-					}
+					this._customer = value;
 					this.SendPropertyChanged("customer");
+					this.OncustomerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="donut_event", Storage="_donut1", ThisKey="donut", OtherKey="donut_id", IsForeignKey=true)]
+		public donut donut1
+		{
+			get
+			{
+				return this._donut1.Entity;
+			}
+			set
+			{
+				donut previousValue = this._donut1.Entity;
+				if (((previousValue != value) 
+							|| (this._donut1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._donut1.Entity = null;
+						previousValue.@event.Remove(this);
+					}
+					this._donut1.Entity = value;
+					if ((value != null))
+					{
+						value.@event.Add(this);
+						this._donut = value.donut_id;
+					}
+					else
+					{
+						this._donut = default(int);
+					}
+					this.SendPropertyChanged("donut1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="customer_event", Storage="_customer1", ThisKey="customer", OtherKey="customer_id", IsForeignKey=true)]
+		public customer customer1
+		{
+			get
+			{
+				return this._customer1.Entity;
+			}
+			set
+			{
+				customer previousValue = this._customer1.Entity;
+				if (((previousValue != value) 
+							|| (this._customer1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._customer1.Entity = null;
+						previousValue.@event.Remove(this);
+					}
+					this._customer1.Entity = value;
+					if ((value != null))
+					{
+						value.@event.Add(this);
+						this._customer = value.customer_id;
+					}
+					else
+					{
+						this._customer = default(int);
+					}
+					this.SendPropertyChanged("customer1");
 				}
 			}
 		}

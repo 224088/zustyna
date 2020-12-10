@@ -5,25 +5,17 @@
       <Column Name="customer_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="customer_f_name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="customer_l_name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="customer_event" Member="event" ThisKey="customer_id" OtherKey="reader" Type="event" />
+      <Association Name="customer_event" Member="event" ThisKey="customer_id" OtherKey="customer" Type="event" />
     </Type>
   </Table>
   <Table Name="dbo.donut" Member="donut">
     <Type Name="donut">
       <Column Name="donut_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="donut_name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="fillling" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="filling" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="price" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="donut_state" Member="state" ThisKey="donut_id" OtherKey="donut" Type="state" />
-    </Type>
-  </Table>
-  <Table Name="dbo.state" Member="state">
-    <Type Name="state">
-      <Column Name="state_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="is_stocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="donut" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="state_event" Member="event" ThisKey="state_id" OtherKey="state" Type="event" />
-      <Association Name="donut_state" Member="donut1" ThisKey="donut" OtherKey="donut_id" Type="donut" IsForeignKey="true" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="donut_event" Member="event" ThisKey="donut_id" OtherKey="donut" Type="event" />
     </Type>
   </Table>
   <Table Name="dbo.event" Member="event">
@@ -31,10 +23,11 @@
       <Column Name="event_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="event_time" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="is_stocking_event" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="state" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="reader" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="state_event" Member="state1" ThisKey="state" OtherKey="state_id" Type="state" IsForeignKey="true" />
-      <Association Name="customer_event" Member="customer" ThisKey="reader" OtherKey="customer_id" Type="customer" IsForeignKey="true" />
+      <Column Name="amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="donut" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="customer" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="donut_event" Member="donut1" ThisKey="donut" OtherKey="donut_id" Type="donut" IsForeignKey="true" />
+      <Association Name="customer_event" Member="customer1" ThisKey="customer" OtherKey="customer_id" Type="customer" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
