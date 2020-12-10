@@ -12,7 +12,7 @@ namespace DataTest
     {
         static private string GetConnectionString()
         {
-            return "Data Source=(LocalDB)\\DESKTOP-56T1RJQ; AttachDbFilename =| DataDirectory |\\donut.mdf; Integrated Security = True";
+            return "Data Source=DESKTOP-56T1RJQ; AttachDbFilename =donut.mdf; Integrated Security = True";
         }
 
         private static void OpenSqlConnection()
