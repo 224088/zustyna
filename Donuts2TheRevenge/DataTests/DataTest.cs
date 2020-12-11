@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using Data;
 using System.Data.SqlClient;
+using Rescources;
 
 
 namespace DataTest
@@ -10,17 +11,16 @@ namespace DataTest
     [TestClass]
     public class DataTest
     {
-        
-
-        
+        SQLString S = new SQLString();
 
         [TestMethod]
         public void AddDOnutToDatabase()
         {
             //OpenSqlConnection();
 
-            //using (DataClasses1DataContext database = new DataClasses1DataContext("Data Source=DESKTOP-H5C7HVQ;Initial Catalog=donut;Integrated Security=True")) 
-            using (DataClasses1DataContext database = new DataClasses1DataContext("Data Source=DESKTOP-56T1RJQ;Initial Catalog=donut;Integrated Security=True"))
+            
+            
+            using (DataClasses1DataContext database = new DataClasses1DataContext(S.GetString()))
             {
 
                 donut donut = new donut();
@@ -57,7 +57,7 @@ namespace DataTest
              [ExpectedException(typeof(System.Data.SqlClient.SqlException))]
            public void ConnectingToNonExsistingDB()
            {
-            using (DataClasses1DataContext fake = new DataClasses1DataContext("Data Source=DESKTOP-H5C7HVQ;Initial Catalog=WrongNAme;Integrated Security=True"))
+            using (DataClasses1DataContext fake = new DataClasses1DataContext("Data Source = DESKTOP-H5C7HVQ; Initial Catalog = NoNexistant; Integrated Security = True"))
             {
 
                 donut donut = new donut();

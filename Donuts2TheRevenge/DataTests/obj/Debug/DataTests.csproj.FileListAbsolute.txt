@@ -38,3 +38,5 @@ C:\Users\Zuza\Desktop\studia\programming\zustyna\Donuts2TheRevenge\DataTests\obj
 C:\Users\Zuza\Desktop\studia\programming\zustyna\Donuts2TheRevenge\DataTests\obj\Debug\DataTests.csproj.CopyComplete
 C:\Users\Zuza\Desktop\studia\programming\zustyna\Donuts2TheRevenge\DataTests\obj\Debug\DataTests.dll
 C:\Users\Zuza\Desktop\studia\programming\zustyna\Donuts2TheRevenge\DataTests\obj\Debug\DataTests.pdb
+C:\Users\Zuza\Desktop\studia\programming\zustyna\Donuts2TheRevenge\DataTests\bin\Debug\Rescources.dll
+C:\Users\Zuza\Desktop\studia\programming\zustyna\Donuts2TheRevenge\DataTests\bin\Debug\Rescources.pdb

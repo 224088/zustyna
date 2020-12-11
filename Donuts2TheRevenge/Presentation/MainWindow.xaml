@@ -11,6 +11,17 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ComboBox Margin="5"/>
+        <ComboBox Margin="10,10,484,379" ItemsSource="{Binding Path=Donuts}" DisplayMemberPath="donut_name" Grid.Row="1"
+                  SelectedItem="{Binding Path=CurrentDonut, Mode=TwoWay}"/>
+
+        <Grid Grid.Row="1" Margin="426,10,44,355">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="11*"/>
+                <RowDefinition Height="11*"/>
+            </Grid.RowDefinitions>
+            <TextBox Text="{Binding CurrentDonut.donut_name}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" />
+            <TextBox Text="{Binding CurrentDonut.filling}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" />
+        </Grid>
     </Grid>
 </Window>

@@ -9,6 +9,10 @@ namespace Services
 {
     public class donutCRUD
     {
+        public donutCRUD()
+        {
+        }
+
         public bool addDonut(int id, int amount, string name, string fill, int cost)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
@@ -111,6 +115,15 @@ namespace Services
                     }
                 }
                 return null;
+            }
+        }
+
+        public IEnumerable<donut> GetAllDonuts()
+        {
+            using (DataClasses1DataContext context = new DataClasses1DataContext())  
+            {
+                var result = context.donut.ToList();
+                return result;
             }
         }
     }

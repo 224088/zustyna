@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using Presentation.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Presentation
 {
     /// <summary>
@@ -20,9 +23,11 @@ namespace Presentation
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainViewModel viewModel = new MainViewModel();
         public MainWindow()
         {
             InitializeComponent();
+            this.Loaded += (s, e) => { this.DataContext = this.viewModel; };
         }
     }
 }

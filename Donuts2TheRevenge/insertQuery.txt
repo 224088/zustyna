@@ -1,0 +1,92 @@
+Insert into donut(donut_id, donut_name, filling, price,quantity) Values (
+3,
+'Toffee for your Coffee',
+'Toffee',
+9,
+10
+);
+
+Insert into donut(donut_id, donut_name, filling, price,quantity) Values (
+4,
+'I dream a Cream',
+'Cream',
+9,
+10
+);
+
+
+Insert into donut(donut_id, donut_name, filling, price,quantity) Values (
+5,
+'Big Apple',
+'Apple',
+7,
+10
+);
+
+Insert into donut(donut_id, donut_name, filling, price,quantity) Values (
+6,
+'Copa Banana',
+'Bananas',
+11,
+10
+);
+
+
+
+Insert into donut(donut_id, donut_name, filling, price,quantity) Values (
+7,
+'Coco Loco',
+'Chocolate and Chilli',
+13,
+10
+);
+
+Insert into donut(donut_id, donut_name, filling, price,quantity) Values (
+8,
+'Rolling Stone',
+'Cynamon',
+8,
+10
+);
+
+
+Insert into donut(donut_id, donut_name, filling, price,quantity) Values (
+9,
+'101 Dalamatins',
+'White Chocolate and Sesame',
+14,
+10
+);
+
+Insert into donut(donut_id, donut_name, filling, price,quantity) Values (
+10,
+'Berry Spears',
+'Forest Berries Jam',
+9,
+10
+);
+
+
+Insert into donut(donut_id, donut_name, filling, price,quantity) Values (
+11,
+'Stella Nutella',
+'Nutella',
+10,
+10
+);
+
+Insert into donut(donut_id, donut_name, filling, price,quantity) Values (
+12,
+'Pink Panther',
+'Pink frosting',
+9,
+10
+);
+
+Insert into donut(donut_id, donut_name, filling, price,quantity) Values (
+13,
+'Hunky Chunk',
+'Nuts',
+11,
+10
+);
