@@ -17,7 +17,7 @@ namespace Presentation.ViewModel
         public DonutViewModel()
         {
             this.RefreshDonuts();
-            AddDonutCommand = new ModelCommand(AddDonut );
+            AddDonutCommand = new ModelCommand(o=>AddDonut() );
         }
 
         private void RefreshDonuts()
@@ -72,7 +72,7 @@ namespace Presentation.ViewModel
 
 
         public Lazy<IWindow> ChildWindow { get; set; }
-        private void AddDonut(object obj)
+        private void AddDonut()
         {
             System.Diagnostics.Debug.WriteLine("This is a log");
 
