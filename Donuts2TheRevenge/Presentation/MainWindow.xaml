@@ -6,22 +6,25 @@
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <ComboBox Margin="10,10,484,379" ItemsSource="{Binding Path=Donuts}" DisplayMemberPath="donut_name" Grid.Row="1"
-                  SelectedItem="{Binding Path=CurrentDonut, Mode=TwoWay}"/>
-
-        <Grid Grid.Row="1" Margin="426,10,44,355">
-            
-            <Grid.RowDefinitions>
-                <RowDefinition Height="11*"/>
-                <RowDefinition Height="11*"/>
-            </Grid.RowDefinitions>
-            <TextBox Text="{Binding CurrentDonut.donut_name}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" />
-            <TextBox Text="{Binding CurrentDonut.filling}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" />
-        </Grid>
-    </Grid>
+    <Window.Resources>
+        <DataTemplate x:Key="Donut">
+            <local:Donut/>
+        </DataTemplate>
+        <DataTemplate x:Key="Customer">
+            <local:Customer/>
+        </DataTemplate>
+    </Window.Resources>
+    <StackPanel>
+        <TabControl Height="422">
+            <TabItem Header="Donut List">
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource Donut}" Margin="0,-1,0,-25" />
+            </TabItem>
+            <TabItem Header="Customer List">
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource Customer}" Margin="0,-1,0,-25" />
+            </TabItem>
+        </TabControl>
+    </StackPanel>
+   
+        
+    
 </Window>

@@ -1,5 +1,4 @@
-﻿
-using Presentation.ViewModel;
+﻿using Presentation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +14,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
 namespace Presentation
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Logika interakcji dla klasy Donut.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Donut : UserControl
     {
-        public MainWindow()
+        private DonutViewModel viewModel = new DonutViewModel();
+        public Donut()
         {
             InitializeComponent();
+            this.Loaded += (s, e) => { this.DataContext = this.viewModel; };
         }
     }
 }

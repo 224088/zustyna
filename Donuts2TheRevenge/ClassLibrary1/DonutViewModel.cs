@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace Presentation.ViewModel
 {
-    public class MainViewModel : BaseViewModel
+    
+    public class DonutViewModel : BaseViewModel
     {
+        private ModelCommand command;
+
         private donutCRUD DonutService = new donutCRUD() ;
-        public MainViewModel()
+        public DonutViewModel()
         {
             this.RefreshDonuts();
-
-
+            AddDonutCommand = new ModelCommand(o => { AddDonut(); }, o => true);
         }
 
         private void RefreshDonuts()
@@ -60,5 +62,19 @@ namespace Presentation.ViewModel
         {
             throw new NotImplementedException();
         }
+
+
+        public ModelCommand AddDonutCommand
+        
+          {
+                get; private set;
+        }
+    
+
+        private void AddDonut()
+        {
+            System.Diagnostics.Debug.WriteLine("This is a log");
+        }
+
     }
 }

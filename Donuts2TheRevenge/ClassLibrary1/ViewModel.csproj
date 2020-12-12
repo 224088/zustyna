@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseViewModel.cs" />
-    <Compile Include="MainViewModel.cs" />
+    <Compile Include="AddEditViewModel.cs" />
+    <Compile Include="ModelCommand.cs" />
+    <Compile Include="DonutViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
