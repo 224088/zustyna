@@ -20,6 +20,7 @@
             <TextBox Text="{Binding CurrentDonut.filling}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" />
         </Grid>
         <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="673,121,0,0" Grid.Row="1" Command="{Binding AddDonutCommand}"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="346,10,0,0" VerticalAlignment="Top" Width="57" Command="{Binding RefreshCommand}"/>
 
     </Grid>
 </UserControl>

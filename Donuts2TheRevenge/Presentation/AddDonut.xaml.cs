@@ -1,5 +1,4 @@
-﻿using Presentation.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,22 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Presentation.ViewModel;
 
 namespace Presentation
 {
     /// <summary>
-    /// Logika interakcji dla klasy Donut.xaml
+    /// Logika interakcji dla klasy AddDonut.xaml
     /// </summary>
-    public partial class Donut : UserControl
+    public partial class AddDonut : Window, IWindow
+
     {
-        private DonutViewModel viewModel = new DonutViewModel();
-        public Donut()
+        public AddDonut()
         {
             InitializeComponent();
-            this.Loaded += (s, e) => { this.DataContext = this.viewModel; };
-            viewModel.ChildWindow = new Lazy<IWindow>(() => new AddDonut());
         }
     }
 }

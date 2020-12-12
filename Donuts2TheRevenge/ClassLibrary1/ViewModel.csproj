@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="AddEditViewModel.cs" />
+    <Compile Include="IWindow.cs" />
     <Compile Include="ModelCommand.cs" />
     <Compile Include="DonutViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

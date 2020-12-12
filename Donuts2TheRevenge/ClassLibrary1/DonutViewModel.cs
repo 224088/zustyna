@@ -11,13 +11,13 @@ namespace Presentation.ViewModel
     
     public class DonutViewModel : BaseViewModel
     {
-        private ModelCommand command;
+        
 
         private donutCRUD DonutService = new donutCRUD() ;
         public DonutViewModel()
         {
             this.RefreshDonuts();
-            AddDonutCommand = new ModelCommand(o => { AddDonut(); }, o => true);
+            AddDonutCommand = new ModelCommand(AddDonut );
         }
 
         private void RefreshDonuts()
@@ -69,12 +69,21 @@ namespace Presentation.ViewModel
           {
                 get; private set;
         }
-    
 
-        private void AddDonut()
+
+        public Lazy<IWindow> ChildWindow { get; set; }
+        private void AddDonut(object obj)
         {
             System.Diagnostics.Debug.WriteLine("This is a log");
+
+            IWindow _child = ChildWindow.Value;
+            _child.Show();
+
         }
 
+       
+
+
+       
     }
 }
