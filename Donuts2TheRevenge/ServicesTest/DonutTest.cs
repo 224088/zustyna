@@ -23,12 +23,12 @@ namespace ServicesTest
             donutCRUD.addDonut(24, 3, "last christmas", "magic", 5);
             Assert.AreEqual(donutCRUD.GetDonut(24).donut_id, 24);
             Assert.AreEqual(donutCRUD.GetDonutByName("last christmas").quantity, 3);
-            donutCRUD.addDonut(8, 2, "a", "magic", 3);
-            donutCRUD.addDonut(16, 6, "aa", "magic", 7);
+            donutCRUD.addDonut(88, 2, "a", "magic", 3);
+            donutCRUD.addDonut(116, 6, "aa", "magic", 7);
             //Assert.AreEqual(donutCRUD.GetDuntsByFilling("magic").)
             donutCRUD.deleteDonut(24);
-            donutCRUD.deleteDonut(8);
-            donutCRUD.deleteDonut(16);
+            donutCRUD.deleteDonut(88);
+            donutCRUD.deleteDonut(116);
            
            
         }

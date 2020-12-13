@@ -13,9 +13,15 @@
         <DataTemplate x:Key="Customer">
             <local:Customer/>
         </DataTemplate>
+        <DataTemplate x:Key="BuyDonut">
+            <local:BuyDonut/>
+        </DataTemplate>
     </Window.Resources>
     <StackPanel>
         <TabControl Height="422">
+            <TabItem Header="Buy Donut">
+            <ContentControl Content="{Binding}" ContentTemplate="{StaticResource BuyDonut}" Margin="0,-4,0,-22" />
+            </TabItem>
             <TabItem Header="Donut List">
                 <ContentControl Content="{Binding}" ContentTemplate="{StaticResource Donut}" Margin="0,-1,0,-25" />
             </TabItem>
