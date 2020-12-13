@@ -1,0 +1,11 @@
+Insert into customer(customer_id, customer_f_name, customer_l_name) Values (
+5,
+'Britney',
+'Spears'
+);
+
+Insert into customer(customer_id, customer_f_name, customer_l_name) Values (
+6,
+'John',
+'Bon Jovi'
+);
