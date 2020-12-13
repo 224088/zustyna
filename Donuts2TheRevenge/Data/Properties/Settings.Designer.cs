@@ -26,8 +26,8 @@ namespace Data.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-H5C7HVQ;Initial Catalog=donut;Integrated Security=True")]
-        //[global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-56T1RJQ;Initial Catalog=donut;Integrated Security=True")]
+        //[global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-H5C7HVQ;Initial Catalog=donut;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-56T1RJQ;Initial Catalog=donut;Integrated Security=True")]
         public string donutConnectionString {
             get {
                 return ((string)(this["donutConnectionString"]));

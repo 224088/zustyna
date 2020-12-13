@@ -1,9 +1,6 @@
 ﻿using Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -123,6 +120,22 @@ namespace Services
             using (DataClasses1DataContext context = new DataClasses1DataContext())  
             {
                 var result = context.donut.ToList();
+                return result;
+            }
+        }
+
+        public IEnumerable<donut> GetDuntsByFilling(string fill)
+        {
+            using (DataClasses1DataContext context = new DataClasses1DataContext())
+            {
+                List<donut> result = new List<donut>();
+                foreach (donut donut in context.donut)
+                {
+                    if (donut.filling.Equals(fill))
+                    {
+                        result.Add(donut);
+                    }
+                }
                 return result;
             }
         }
