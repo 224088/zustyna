@@ -18,3 +18,13 @@ C:\Users\Zuza\Desktop\studia\programming\zustyna\Donuts2TheRevenge\Services\obj\
 C:\Users\Zuza\Desktop\studia\programming\zustyna\Donuts2TheRevenge\Services\obj\Debug\Services.csproj.CopyComplete
 C:\Users\Zuza\Desktop\studia\programming\zustyna\Donuts2TheRevenge\Services\obj\Debug\Services.dll
 C:\Users\Zuza\Desktop\studia\programming\zustyna\Donuts2TheRevenge\Services\obj\Debug\Services.pdb
+E:\Studia\Programming_Technologies\zustyna\trunk\Donuts2TheRevenge\Services\bin\Debug\Services.dll
+E:\Studia\Programming_Technologies\zustyna\trunk\Donuts2TheRevenge\Services\bin\Debug\Services.pdb
+E:\Studia\Programming_Technologies\zustyna\trunk\Donuts2TheRevenge\Services\bin\Debug\Data.dll
+E:\Studia\Programming_Technologies\zustyna\trunk\Donuts2TheRevenge\Services\bin\Debug\Data.pdb
+E:\Studia\Programming_Technologies\zustyna\trunk\Donuts2TheRevenge\Services\bin\Debug\Data.dll.config
+E:\Studia\Programming_Technologies\zustyna\trunk\Donuts2TheRevenge\Services\obj\Debug\Services.csprojAssemblyReference.cache
+E:\Studia\Programming_Technologies\zustyna\trunk\Donuts2TheRevenge\Services\obj\Debug\Services.csproj.CoreCompileInputs.cache
+E:\Studia\Programming_Technologies\zustyna\trunk\Donuts2TheRevenge\Services\obj\Debug\Services.csproj.CopyComplete
+E:\Studia\Programming_Technologies\zustyna\trunk\Donuts2TheRevenge\Services\obj\Debug\Services.dll
+E:\Studia\Programming_Technologies\zustyna\trunk\Donuts2TheRevenge\Services\obj\Debug\Services.pdb

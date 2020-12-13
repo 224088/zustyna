@@ -14,7 +14,7 @@ namespace Services
 
         }
 
-        public bool addEvent(int id, DateTime time, bool isStocking, int count, int don, int client) 
+        static public bool addEvent(int id, DateTime time, bool isStocking, int count, int don, int client) 
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -37,7 +37,7 @@ namespace Services
 
         }
 
-        public bool deleteEvent(int id)
+        static public bool deleteEvent(int id)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -48,7 +48,7 @@ namespace Services
             }
         }
 
-        public bool updateTime(int id, DateTime time)
+        static public bool updateTime(int id, DateTime time)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -59,7 +59,7 @@ namespace Services
             }
         }
 
-        public bool updateType(int id, bool stocking)
+        static public bool updateType(int id, bool stocking)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -70,7 +70,7 @@ namespace Services
             }
         }
 
-        public bool updateAmount(int id, int number)
+        static public bool updateAmount(int id, int number)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -81,7 +81,7 @@ namespace Services
             }
         }
 
-        public bool updateDonut(int id, int don)
+        static public bool updateDonut(int id, int don)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -92,7 +92,7 @@ namespace Services
             }
         }
 
-        public bool updateCustomer(int id, int client)
+        static public bool updateCustomer(int id, int client)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -103,7 +103,7 @@ namespace Services
             }
         }
 
-        public @event GetEvent(int id)
+        static public @event GetEvent(int id)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -118,7 +118,7 @@ namespace Services
             }
         }
 
-        public @event GetEventByTime(DateTime time)
+        static public @event GetEventByTime(DateTime time)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {

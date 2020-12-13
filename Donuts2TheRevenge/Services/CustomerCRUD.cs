@@ -10,7 +10,7 @@ namespace Services
         public CustomerCRUD()
         {
         }
-        public bool addCustomer(int id, string name, string surname)
+        static public bool addCustomer(int id, string name, string surname)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -28,7 +28,7 @@ namespace Services
             }
 
         }
-        public bool deleteCustomer(int id)
+        static public bool deleteCustomer(int id)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -38,7 +38,7 @@ namespace Services
                 return true;
             }
         }
-        public bool updateName(int id, string name)
+        static public bool updateName(int id, string name)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -48,18 +48,18 @@ namespace Services
                 return true;
             }
         }
-        public bool updateLastName(int id, string surname)
+        static public bool updateLastName(int id, string surname)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
                 customer mycustomer = context.customer.SingleOrDefault(customer => customer.customer_id == id);
-                mycustomer.customer_f_name = surname;
+                mycustomer.customer_l_name = surname;
                 context.SubmitChanges();
                 return true;
             }
         }
 
-        public customer GetCustomer(int id)
+        static public customer GetCustomer(int id)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -74,7 +74,7 @@ namespace Services
             }
         }
 
-        public customer GetCustomerByLastName(string lname)
+        static public customer GetCustomerByLastName(string lname)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
