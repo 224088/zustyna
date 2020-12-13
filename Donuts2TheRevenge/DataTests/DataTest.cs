@@ -57,8 +57,8 @@ namespace DataTest
              [ExpectedException(typeof(System.Data.SqlClient.SqlException))]
            public void ConnectingToNonExsistingDB()
            {
-            //using (DataClasses1DataContext fake = new DataClasses1DataContext("Data Source = DESKTOP-H5C7HVQ; Initial Catalog = NoNexistant; Integrated Security = True"))
-            using (DataClasses1DataContext fake = new DataClasses1DataContext(S.GetString()))
+            using (DataClasses1DataContext fake = new DataClasses1DataContext("Data Source = DESKTOP-H5C7HVQ; Initial Catalog = NoNexistant; Integrated Security = True"))
+            //using (DataClasses1DataContext fake = new DataClasses1DataContext(S.GetString()))
             {
 
                 donut donut = new donut();

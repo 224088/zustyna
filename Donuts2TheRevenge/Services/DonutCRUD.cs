@@ -10,7 +10,7 @@ namespace Services
         {
         }
 
-        public bool addDonut(int id, int amount, string name, string fill, int cost)
+        static public bool addDonut(int id, int amount, string name, string fill, int cost)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -32,7 +32,7 @@ namespace Services
         }
 
 
-        public bool deleteDonut(int id)
+        static public bool deleteDonut(int id)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -43,7 +43,7 @@ namespace Services
             }
         }
 
-        public bool updateFilling (int id, string fill)
+        static public bool updateFilling (int id, string fill)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -54,7 +54,7 @@ namespace Services
             }
         }
 
-        public bool updateName(int id, string name)
+        static public bool updateName(int id, string name)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -64,7 +64,7 @@ namespace Services
                 return true;
             }
         }
-        public bool updatePrice(int id, int cost)
+        static public bool updatePrice(int id, int cost)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -74,7 +74,7 @@ namespace Services
                 return true;
             }
         }
-        public bool updateQuantity(int id, int amount) 
+        static public bool updateQuantity(int id, int amount) 
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -85,7 +85,7 @@ namespace Services
             }
         }
 
-        public donut GetDonut(int id)
+        static public donut GetDonut(int id)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -100,7 +100,7 @@ namespace Services
             }
         }
 
-        public donut GetDonutByName(string name)
+        static public donut GetDonutByName(string name)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -124,7 +124,7 @@ namespace Services
             }
         }
 
-        public IEnumerable<donut> GetDuntsByFilling(string fill)
+        static public IEnumerable<donut> GetDuntsByFilling(string fill)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
