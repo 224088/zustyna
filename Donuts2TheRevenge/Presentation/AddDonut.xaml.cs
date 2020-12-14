@@ -21,9 +21,13 @@ namespace Presentation
     public partial class AddDonut : Window, IWindow
 
     {
+        private AddEditViewModel viewModel = new AddEditViewModel();
         public AddDonut()
         {
             InitializeComponent();
+            this.Loaded += (s, e) => { this.DataContext = this.viewModel; };
         }
+
+     
     }
 }

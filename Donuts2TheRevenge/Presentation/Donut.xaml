@@ -10,22 +10,33 @@
         <ComboBox Margin="10,10,484,379" ItemsSource="{Binding Path=Donuts}" DisplayMemberPath="donut_name" Grid.Row="1"
                   SelectedItem="{Binding Path=CurrentDonut, Mode=TwoWay}"/>
 
-        <Grid Margin="418,79,52,286">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0*"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <TextBlock FontSize="16"  Margin="26,-40,40,10" Grid.Row="1"><Run Text="Click on donut to display its details:"/></TextBlock>
-            <TextBox Text="{Binding CurrentDonut.donut_id}" Grid.Column="0" Grid.Row="0" Margin="0,0,0,43" Grid.RowSpan="2" />
-            <TextBox Text="{Binding CurrentDonut.donut_name}" Grid.Column="0" Grid.Row="1" Margin="0,47,0,0"/>
-            <TextBox Text="{Binding CurrentDonut.filling}" Grid.Column="0" Grid.Row="1" Margin="0,95,0,-51" />
-            <TextBox Text="{Binding CurrentDonut.price}" Grid.Column="0" Grid.Row="1" Margin="0,141,0,-97" />
-            <TextBox Text="{Binding CurrentDonut.amount}" Grid.Column="0" Grid.Row="1" Margin="0,187,0,-139"  />
-        </Grid>
+        <TextBlock FontSize="16"  Margin="436,29,52,366"><Run Text="Click on donut to display its details:"/></TextBlock>
+        <StackPanel Orientation="Vertical" Margin="426,56,27,230">
+
+            <TextBox IsReadOnly="True" Text="{Binding CurrentDonut.donut_id}" />
+            <TextBox IsReadOnly="True" Text="{Binding CurrentDonut.donut_name}" />
+            <TextBox IsReadOnly="True" Text="{Binding CurrentDonut.filling}" />
+            <TextBox IsReadOnly="True" Text="{Binding CurrentDonut.price}" />
+            <TextBox IsReadOnly="True" Text="{Binding CurrentDonut.quantity}" />
+        </StackPanel>
+
+        <StackPanel Margin="371,55,331,296">
+            <TextBlock TextWrapping="Wrap" Text="ID" Height="18"/>
+            <TextBlock TextWrapping="Wrap" Text="Name" Height="19"/>
+            <TextBlock TextWrapping="Wrap" Text="Filling" Height="19"/>
+            <TextBlock TextWrapping="Wrap" Text="Price" Height="19"/>
+            <TextBlock TextWrapping="Wrap" Text="Quantity" Height="19"/>
+
+
+
+        </StackPanel>
+
+
         <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="418,341,0,0" Command="{Binding AddDonutCommand}"/>
         <Button Content="Refresh" HorizontalAlignment="Left" Margin="346,10,0,0" VerticalAlignment="Top" Width="57" Command="{Binding RefreshCommand}"/>
         <Button Content="Edit" HorizontalAlignment="Left" Margin="543,341,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Delete" HorizontalAlignment="Left" Margin="673,341,0,0" VerticalAlignment="Top" Width="75"/>
+
 
     </Grid>
 </UserControl>
