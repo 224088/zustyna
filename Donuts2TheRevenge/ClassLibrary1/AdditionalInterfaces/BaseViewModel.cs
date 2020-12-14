@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Presentation.ViewModel
+namespace Presentation.ViewModel.AdditionalInterfaces
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

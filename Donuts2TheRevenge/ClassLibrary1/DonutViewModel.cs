@@ -1,4 +1,5 @@
 ﻿using Data;
+using Presentation.ViewModel.AdditionalInterfaces;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Presentation.ViewModel
     {
         
 
-        private donutCRUD DonutService = new donutCRUD() ;
+        //private donutCRUD DonutService = new donutCRUD() ;
         public DonutViewModel()
         {
             this.RefreshDonuts();
@@ -22,7 +23,7 @@ namespace Presentation.ViewModel
 
         private void RefreshDonuts()
         {
-            Task.Run(() => this.Donuts =  DonutServie.GetAllDonuts()); 
+            Task.Run(() => this.Donuts =  donutCRUD.GetAllDonuts()); 
         }
 
         private IEnumerable <donut> donuts;

@@ -1,4 +1,5 @@
 ﻿using Presentation.ViewModel;
+using Presentation.ViewModel.AdditionalInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

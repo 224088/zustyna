@@ -11,7 +11,7 @@
                   SelectedItem="{Binding Path=CurrentDonut, Mode=TwoWay}"/>
 
         <TextBlock FontSize="16"  Margin="436,29,52,366"><Run Text="Click on donut to display its details:"/></TextBlock>
-        <StackPanel Orientation="Vertical" Margin="426,56,27,230">
+        <StackPanel Orientation="Vertical" Margin="430,56,23,272">
 
             <TextBox IsReadOnly="True" Text="{Binding CurrentDonut.donut_id}" />
             <TextBox IsReadOnly="True" Text="{Binding CurrentDonut.donut_name}" />
@@ -20,12 +20,12 @@
             <TextBox IsReadOnly="True" Text="{Binding CurrentDonut.quantity}" />
         </StackPanel>
 
-        <StackPanel Margin="371,55,331,296">
+        <StackPanel Margin="365,50,324,299">
             <TextBlock TextWrapping="Wrap" Text="ID" Height="18"/>
             <TextBlock TextWrapping="Wrap" Text="Name" Height="19"/>
             <TextBlock TextWrapping="Wrap" Text="Filling" Height="19"/>
             <TextBlock TextWrapping="Wrap" Text="Price" Height="19"/>
-            <TextBlock TextWrapping="Wrap" Text="Quantity" Height="19"/>
+            <TextBlock TextWrapping="Wrap" Text="Quantity" Height="24" Margin="0,0,49,0"/>
 
 
 
