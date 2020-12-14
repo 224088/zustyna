@@ -118,22 +118,8 @@ namespace Services
             }
         }
 
-        static public @event GetEventByTime(DateTime time)
-        {
-            using (DataClasses1DataContext context = new DataClasses1DataContext())
-            {
-                foreach (@event myevent in context.@event.ToList())
-                {
-                    if (myevent.event_time == time)
-                    {
-                        return myevent;
-                    }
-                }
-                return null;
-            }
-        }
 
-        public IEnumerable<@event> GetAllCustomers()
+        static public IEnumerable<@event> GetAllEvents()
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -142,7 +128,23 @@ namespace Services
             }
         }
 
-        public IEnumerable<@event> GetEventsByType(bool type)
+        static public IEnumerable<@event> GetEventsByTime(DateTime date)
+        {
+            using (var context = new DataClasses1DataContext())
+            {
+                List<@event> events = new List<@event>();
+                foreach (@event eveent in context.@event.ToList())
+                {
+                    if (eveent.event_time == date)
+                    {
+                        events.Add(eveent);
+                    }
+                }
+                return events;
+            }
+        }
+
+        static public IEnumerable<@event> GetEventsByType(bool type)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -157,7 +159,7 @@ namespace Services
                 return result;
             }
         }
-        public IEnumerable<@event> GetEventsByDonut(int don)
+         static public IEnumerable<@event> GetEventsByDonut(int don)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -172,7 +174,7 @@ namespace Services
                 return result;
             }
         }
-        public IEnumerable<@event> GetEventsByCustomer(int client)
+         static public IEnumerable<@event> GetEventsByCustomer(int client)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -188,7 +190,7 @@ namespace Services
             }
         }
 
-        public IEnumerable<@event> GetEventsByAmount(int number)
+        static public IEnumerable<@event> GetEventsByAmount(int number)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {

@@ -89,7 +89,7 @@ namespace Services
             }
         }
 
-        public IEnumerable<customer> GetCustomersByName(string name)
+        static public IEnumerable<customer> GetCustomersByName(string name)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -105,7 +105,7 @@ namespace Services
             }
         }
 
-        public IEnumerable<customer> GetAllCustomers()
+         static public IEnumerable<customer> GetAllCustomers()
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {

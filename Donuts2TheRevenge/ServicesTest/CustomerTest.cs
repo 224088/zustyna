@@ -1,6 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Data;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Services;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ServicesTest
 {
@@ -33,6 +36,36 @@ namespace ServicesTest
             Assert.IsTrue(CustomerCRUD.updateName(77, "Elliot"));
             Assert.AreEqual(CustomerCRUD.GetCustomerByLastName("Page").customer_f_name, "Elliot");
             CustomerCRUD.deleteCustomer(77);
+        }
+
+        [TestMethod]
+        public void GetCustomersTest()
+        {
+            CustomerCRUD.addCustomer(2, "Harry", "Potter");
+            CustomerCRUD.addCustomer(16, "Harry", "Styles");
+
+            IEnumerable<customer> customers = CustomerCRUD.GetCustomersByName("Harry");
+
+            Assert.AreEqual(customers.Count(), 2);
+            Assert.AreEqual(customers.ElementAt(0).customer_l_name, "Potter");
+            Assert.AreEqual(customers.ElementAt(1).customer_id, 16);
+
+            CustomerCRUD.deleteCustomer(2);
+            CustomerCRUD.deleteCustomer(16);
+            
+        }
+
+        [TestMethod]
+        public void GetAllCustomersTest()
+        {
+            IEnumerable<customer> customers = CustomerCRUD.GetAllCustomers();
+            Assert.AreEqual(customers.Count(), 2);
+        }
+
+        [TestMethod]
+        public void GetCustomerFromDatabseTest()
+        {
+            Assert.AreEqual(CustomerCRUD.GetCustomer(5).customer_l_name, "Spears");
         }
     }
 }

@@ -115,7 +115,7 @@ namespace Services
             }
         }
 
-        public IEnumerable<donut> GetAllDonuts()
+        static public IEnumerable<donut> GetAllDonuts()
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())  
             {

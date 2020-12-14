@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ServicesTest
@@ -23,13 +24,40 @@ namespace ServicesTest
             donutCRUD.addDonut(24, 3, "last christmas", "magic", 5);
             Assert.AreEqual(donutCRUD.GetDonut(24).donut_id, 24);
             Assert.AreEqual(donutCRUD.GetDonutByName("last christmas").quantity, 3);
-            donutCRUD.addDonut(88, 2, "a", "magic", 3);
-            donutCRUD.addDonut(116, 6, "aa", "magic", 7);
-            //Assert.AreEqual(donutCRUD.GetDuntsByFilling("magic").Count, 3);
+            donutCRUD.deleteDonut(24);
+        
+        }
+
+        [TestMethod]
+        public void GetDonutsTest()
+        {
+            donutCRUD.addDonut(24, 3, "last christmas", "magic", 5);
+            donutCRUD.addDonut(88, 2, "firendship is magic", "magic", 3);
+            donutCRUD.addDonut(116, 6, "all i want for christmas", "magic", 7);
+
+            IEnumerable<donut> donuts = donutCRUD.GetDuntsByFilling("magic");
+            Assert.AreEqual(donuts.Count(), 3);
+            Assert.AreEqual(donuts.ElementAt(0).donut_name, "last christmas");
+            Assert.AreEqual(donuts.ElementAt(1).donut_id, 88);
+            Assert.AreEqual(donuts.ElementAt(2).price, 7);
+
+
             donutCRUD.deleteDonut(24);
             donutCRUD.deleteDonut(88);
             donutCRUD.deleteDonut(116);
-          
+        }
+
+        [TestMethod]
+        public void GetAllDonutsTest()
+        {
+            IEnumerable<donut> donuts = donutCRUD.GetAllDonuts();
+            Assert.AreEqual(donuts.Count(), 11);
+        }
+
+        [TestMethod]
+        public void GetDonutFromDatabseTest()
+        {
+            Assert.AreEqual(donutCRUD.GetDonut(4).filling, "Cream");
         }
 
         [TestMethod]

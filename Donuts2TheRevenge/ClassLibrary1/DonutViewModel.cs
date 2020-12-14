@@ -22,7 +22,7 @@ namespace Presentation.ViewModel
 
         private void RefreshDonuts()
         {
-            Task.Run(() => this.Donuts =  DonutService.GetAllDonuts()); 
+            Task.Run(() => this.Donuts =  DonutServie.GetAllDonuts()); 
         }
 
         private IEnumerable <donut> donuts;
