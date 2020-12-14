@@ -48,6 +48,7 @@
     <Compile Include="AdditionalInterfaces\IWindow.cs" />
     <Compile Include="AdditionalInterfaces\ModelCommand.cs" />
     <Compile Include="AdditionalInterfaces\StringValidation.cs" />
+    <Compile Include="CustomerViewModel.cs" />
     <Compile Include="DonutViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

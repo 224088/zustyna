@@ -40,101 +40,61 @@ namespace ServicesTest
             Assert.AreEqual(EventCRUD.GetEvent(68).is_stocking_event, false);
             Assert.IsTrue(EventCRUD.updateTime(68, DateTime.Now));
             EventCRUD.deleteEvent(68);
-
-            //brakuje czas
         }
 
         [TestMethod]
         public void GetAllEventsTest()
         {
-            EventCRUD.addEvent(89, DateTime.Now, false, 75, 7, 6);
-            EventCRUD.addEvent(90, DateTime.Now, true, 75, 7, 5);
-            EventCRUD.addEvent(91, DateTime.Now, false, 13, 8, 6);
-            EventCRUD.addEvent(92, DateTime.Now, false, 11, 7, 5);
+            
 
             IEnumerable<@event> events = EventCRUD.GetAllEvents();
-            Assert.AreEqual(events.Count(), 4);
-            Assert.AreEqual(events.ElementAt(0).event_id, 89);
+            Assert.AreEqual(events.Count(), 3);
+            Assert.AreEqual(events.ElementAt(0).event_id, 1);
 
-            EventCRUD.deleteEvent(89);
-            EventCRUD.deleteEvent(90);
-            EventCRUD.deleteEvent(91);
-            EventCRUD.deleteEvent(92);
         }
 
         [TestMethod]
         public void GetEventsByAmountTest()
         {
-            EventCRUD.addEvent(89, DateTime.Now, false, 75, 7, 6);
-            EventCRUD.addEvent(90, DateTime.Now, true, 75, 7, 5);
-            EventCRUD.addEvent(91, DateTime.Now, false, 13, 8, 6);
-            EventCRUD.addEvent(92, DateTime.Now, false, 11, 7, 5);
+            
 
-            IEnumerable<@event> events = EventCRUD.GetEventsByAmount(75);
-            Assert.AreEqual(events.Count(), 2);
-            Assert.AreEqual(events.ElementAt(1).event_id, 90);
+            IEnumerable<@event> events = EventCRUD.GetEventsByAmount(20);
+            Assert.AreEqual(events.Count(), 1);
+            Assert.AreEqual(events.ElementAt(0).event_id, 3);
 
-            EventCRUD.deleteEvent(89);
-            EventCRUD.deleteEvent(90);
-            EventCRUD.deleteEvent(91);
-            EventCRUD.deleteEvent(92);
+            
         }
 
         [TestMethod]
         public void GetEventsByCustomerTest()
         {
-            EventCRUD.addEvent(89, DateTime.Now, false, 75, 7, 6);
-            EventCRUD.addEvent(90, DateTime.Now, true, 75, 7, 5);
-            EventCRUD.addEvent(91, DateTime.Now, false, 13, 8, 6);
-            EventCRUD.addEvent(92, DateTime.Now, false, 11, 7, 5);
 
             IEnumerable<@event> events = EventCRUD.GetEventsByCustomer(5);
-            Assert.AreEqual(events.Count(), 2);
-            Assert.AreEqual(events.ElementAt(0).event_id, 90);
-            Assert.AreEqual(events.ElementAt(1).event_id, 92);
+            Assert.AreEqual(events.Count(), 1);
+            Assert.AreEqual(events.ElementAt(0).event_id, 1);
 
-            EventCRUD.deleteEvent(89);
-            EventCRUD.deleteEvent(90);
-            EventCRUD.deleteEvent(91);
-            EventCRUD.deleteEvent(92);
+
         }
 
         [TestMethod]
         public void GetEventsByDonutsTest()
         {
-            EventCRUD.addEvent(89, DateTime.Now, false, 75, 7, 6);
-            EventCRUD.addEvent(90, DateTime.Now, true, 75, 7, 5);
-            EventCRUD.addEvent(91, DateTime.Now, false, 13, 8, 6);
-            EventCRUD.addEvent(92, DateTime.Now, false, 11, 7, 5);
+            IEnumerable<@event> events = EventCRUD.GetEventsByDonut(11);
+            Assert.AreEqual(events.Count(), 2);
+            Assert.AreEqual(events.ElementAt(0).customer, 7);
+            Assert.AreEqual(events.ElementAt(1).event_id, 3);
 
-            IEnumerable<@event> events = EventCRUD.GetEventsByDonut(7);
-            Assert.AreEqual(events.Count(), 3);
-            Assert.AreEqual(events.ElementAt(0).customer, 6);
-            Assert.AreEqual(events.ElementAt(2).event_id, 92);
-
-            EventCRUD.deleteEvent(89);
-            EventCRUD.deleteEvent(90);
-            EventCRUD.deleteEvent(91);
-            EventCRUD.deleteEvent(92);
         }
 
         [TestMethod]
         public void GetEventsByTypeTest()
         {
-            EventCRUD.addEvent(89, DateTime.Now, false, 75, 7, 6);
-            EventCRUD.addEvent(90, DateTime.Now, false, 75, 7, 5);
-            EventCRUD.addEvent(91, DateTime.Now, true, 13, 8, 6);
-            EventCRUD.addEvent(92, DateTime.Now, false, 11, 7, 5);
+ 
+            IEnumerable<@event> events = EventCRUD.GetEventsByType(false);
+            Assert.AreEqual(events.Count(), 2);
+            Assert.AreEqual(events.ElementAt(0).amount, 3);
+            Assert.AreEqual(events.ElementAt(1).customer, 7);
 
-            IEnumerable<@event> events = EventCRUD.GetEventsByType(true);
-            Assert.AreEqual(events.Count(), 1);
-            Assert.AreEqual(events.ElementAt(0).amount, 13);
-            
-
-            EventCRUD.deleteEvent(89);
-            EventCRUD.deleteEvent(90);
-            EventCRUD.deleteEvent(91);
-            EventCRUD.deleteEvent(92);
         }
 
         [TestMethod]
@@ -145,9 +105,22 @@ namespace ServicesTest
         }
 
         [TestMethod]
+        public void GetEventsByCustomerNameTest()
+        {
+
+
+            IEnumerable<@event> events = EventCRUD.GetEventsByCustomerName("Paris", "Hilton");
+            Assert.AreEqual(events.Count(), 1);
+            Assert.AreEqual(events.ElementAt(0).amount, 20);
+
+
+        }
+
+
+        [TestMethod]
         public void GetEventFromDatabaseTest()
         {
-            //Assert.AreEqual(EventCRUD.GetEvent(7).customer, 6);
+            Assert.AreEqual(EventCRUD.GetEvent(2).customer, 7);
         }
     }
 }

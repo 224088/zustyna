@@ -23,6 +23,7 @@ namespace ServicesTest
             CustomerCRUD.addCustomer(88, "Joan", "Jett");
             Assert.AreEqual(CustomerCRUD.GetCustomer(88).customer_f_name, "Joan");
             Assert.AreEqual(CustomerCRUD.GetCustomerByLastName("Jett").customer_id, (88));
+            Assert.AreEqual(CustomerCRUD.GetCustomerByNames("Joan", "Jett").customer_id, 88);
             CustomerCRUD.deleteCustomer(88);
 
         }
@@ -41,16 +42,16 @@ namespace ServicesTest
         [TestMethod]
         public void GetCustomersTest()
         {
-            CustomerCRUD.addCustomer(2, "Harry", "Potter");
-            CustomerCRUD.addCustomer(16, "Harry", "Styles");
+            CustomerCRUD.addCustomer(19, "Anna", "Kowalska");
+            CustomerCRUD.addCustomer(16, "Anna", "Nowak");
 
-            IEnumerable<customer> customers = CustomerCRUD.GetCustomersByName("Harry");
+            IEnumerable<customer> customers = CustomerCRUD.GetCustomersByName("Anna");
 
             Assert.AreEqual(customers.Count(), 2);
-            Assert.AreEqual(customers.ElementAt(0).customer_l_name, "Potter");
-            Assert.AreEqual(customers.ElementAt(1).customer_id, 16);
+            Assert.AreEqual(customers.ElementAt(0).customer_l_name, "Nowak");
+            Assert.AreEqual(customers.ElementAt(1).customer_id, 19);
 
-            CustomerCRUD.deleteCustomer(2);
+            CustomerCRUD.deleteCustomer(19);
             CustomerCRUD.deleteCustomer(16);
             
         }
@@ -59,7 +60,7 @@ namespace ServicesTest
         public void GetAllCustomersTest()
         {
             IEnumerable<customer> customers = CustomerCRUD.GetAllCustomers();
-            Assert.AreEqual(customers.Count(), 2);
+            Assert.AreEqual(customers.Count(), 5);
         }
 
         [TestMethod]

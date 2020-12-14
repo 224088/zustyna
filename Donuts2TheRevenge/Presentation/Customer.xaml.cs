@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Presentation.ViewModel;
+using Presentation.ViewModel.AdditionalInterfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,12 @@ namespace Presentation
     /// </summary>
     public partial class Customer : UserControl
     {
+        private CustomerViewModel CustomerViewModel = new CustomerViewModel();
         public Customer()
         {
             InitializeComponent();
+            this.Loaded += (s, e) => { this.DataContext = this.CustomerViewModel; };
+            //CustomerViewModel.ChildWindow = new Lazy<IWindow>(() => new AddCustomer());
         }
     }
 }

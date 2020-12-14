@@ -190,6 +190,24 @@ namespace Services
             }
         }
 
+        static public IEnumerable<@event> GetEventsByCustomerName(string name, string surname)
+        {
+            using (DataClasses1DataContext context = new DataClasses1DataContext())
+            {
+               customer customer = CustomerCRUD.GetCustomerByNames(name,surname);
+
+                List<@event> events = new List<@event>();
+                foreach (@event eveent in context.@event.ToList())
+                {
+                    if (eveent.customer == customer.customer_id)
+                    {
+                        events.Add(eveent);
+                    }
+                }
+                return events;
+            }
+        }
+
         static public IEnumerable<@event> GetEventsByAmount(int number)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())

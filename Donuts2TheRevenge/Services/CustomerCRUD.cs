@@ -105,7 +105,22 @@ namespace Services
             }
         }
 
-         static public IEnumerable<customer> GetAllCustomers()
+        static public customer GetCustomerByNames(string name, string surname)
+        {
+            using (DataClasses1DataContext context = new DataClasses1DataContext())
+            {
+                foreach (customer customer in context.customer.ToList())
+                {
+                    if (customer.customer_f_name== name && customer.customer_l_name==surname)
+                    {
+                        return customer;
+                    }
+                }
+                return null;
+            }
+        }
+
+        static public IEnumerable<customer> GetAllCustomers()
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
