@@ -74,7 +74,9 @@ namespace Presentation.ViewModel
             }
         }
         private void RefreshEvents()
+
         {
+            
             Task.Run(() => this.Events = EventCRUD.GetEventsByCustomerName(CurrentCustomer.customer_f_name, CurrentCustomer.customer_l_name));
         }
 
@@ -90,7 +92,7 @@ namespace Presentation.ViewModel
             {
                 this.currentEvent = value;
                 OnPropertyChanged("CurrentEvent");
-                this.RefreshCustomers();
+                this.RefreshDonut();
             }
         }
 
@@ -110,7 +112,7 @@ namespace Presentation.ViewModel
 
         private void RefreshDonut()
         {
-            // System.Diagnostics.Debug.WriteLine(CurrentEvent.book);
+            // System.Diagnostics.Debug.WriteLine(CurrentEvent.donut);
             Task.Run(() => this.Donut = donutCRUD.GetDonut(CurrentEvent.donut));
         }
 
