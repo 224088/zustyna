@@ -3,14 +3,43 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Presentation"
+        xmlns:validationRule="clr-namespace:Presentation.ViewModel.AdditionalInterfaces;assembly=ClassLibrary1"
         mc:Ignorable="d"
         Title="AddDonut" Height="307.229" Width="586.747">
     <Grid>
         <TextBlock HorizontalAlignment="Center"  TextWrapping="Wrap" Text="&#x9;CREATE A  PERFECT DONUT" VerticalAlignment="Top" Height="20" Width="234"/>
         <TextBlock HorizontalAlignment="Center" Margin="266,36,270,0" TextWrapping="Wrap" Text="Name" Height="15" VerticalAlignment="Top" Width="43"/>
-        <TextBox HorizontalAlignment="Center" Height="26" Margin="102,51,120,0" TextWrapping="Wrap" Text="{Binding CurrentDonut.donut_name, Mode=TwoWay}" VerticalAlignment="Top" Width="357"/>
+
+        <TextBox HorizontalAlignment="Center" Height="26" Margin="102,51,120,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="357" >
+            <TextBox.Text>
+                <Binding Path="CurrentDonut.donut_name"  Mode="TwoWay"
+                 ValidatesOnDataErrors="True"
+                         NotifyOnValidationError="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                        <validationRule:StringValidation  />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <!-- Placeholder for the TextBox itself -->
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <ItemsControl ItemsSource="{Binding}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ErrorContent}" Foreground="Red"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox> 
+        
         <TextBlock HorizontalAlignment="Center" Margin="266,90,257,0" TextWrapping="Wrap" Text="Filling" Height="20" VerticalAlignment="Top" Width="56"/>
+        
         <TextBox HorizontalAlignment="Center" Height="26" Margin="102,110,120,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="357"/>
         <TextBlock HorizontalAlignment="Center" Margin="117,154,416,0" TextWrapping="Wrap" Text="Price" Height="14" VerticalAlignment="Top" Width="46"/>
         <TextBox HorizontalAlignment="Center" Height="24" Margin="102,173,416,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="61"/>

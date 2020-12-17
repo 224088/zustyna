@@ -45,6 +45,7 @@ namespace Presentation.ViewModel
             {
                 this.currentDonut = value;
                 this.OnPropertyChanged("CurrentDonut");
+               
             }
 
         }

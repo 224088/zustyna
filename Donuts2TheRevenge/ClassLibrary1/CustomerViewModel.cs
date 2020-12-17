@@ -113,7 +113,14 @@ namespace Presentation.ViewModel
         private void RefreshDonut()
         {
             // System.Diagnostics.Debug.WriteLine(CurrentEvent.donut);
-            Task.Run(() => this.Donut = donutCRUD.GetDonut(CurrentEvent.donut));
+            if (currentEvent != null)
+            {
+                Task.Run(() => this.Donut = donutCRUD.GetDonut(CurrentEvent.donut));
+            }
+            else
+            {
+                this.Donut = null;
+            }
         }
 
         /*ICommand */
