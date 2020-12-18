@@ -10,24 +10,29 @@ namespace Services
         {
         }
 
-        static public bool addDonut(int id, int amount, string name, string fill, int cost)
+        static public bool addDonut(int id, int? amount, string name, string fill, int? cost)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
-                donut newDonut = new donut
+
+                if (GetDonut(id) == null && amount >= 0)
                 {
-                    donut_id = id,
-                    donut_name = name,
-                    filling = fill,
-                    price = cost,
-                    quantity = amount,
-                
-                };
-                context.donut.InsertOnSubmit(newDonut); 
-                context.SubmitChanges();    
-               
-                return true;
+                    donut newDonut = new donut
+                    {
+                        donut_id = id,
+                        donut_name = name,
+                        filling = fill,
+                        price = cost,
+                        quantity = amount,
+
+                    };
+                    context.donut.InsertOnSubmit(newDonut);
+                    context.SubmitChanges();
+
+                    return true;
+                }
             }
+            return false;
                 
         }
 

@@ -27,8 +27,11 @@ namespace Presentation
         {
             InitializeComponent();
             this.Loaded += (s, e) => { this.DataContext = this.viewModel; };
+           viewModel.MessageBoxShowDelegate = text => MessageBox.Show(text, "Button interaction", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-     
+
+  
+
     }
 }

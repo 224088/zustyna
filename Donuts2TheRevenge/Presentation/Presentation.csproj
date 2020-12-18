@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AddDonut.xaml">
+    <Page Include="DonutFollow\AddDonut.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -71,11 +71,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DonutFollow\EditDonut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddDonut.xaml.cs">
+    <Compile Include="DonutFollow\AddDonut.xaml.cs">
       <DependentUpon>AddDonut.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -90,6 +94,9 @@
     </Compile>
     <Compile Include="Donut.xaml.cs">
       <DependentUpon>Donut.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DonutFollow\EditDonut.xaml.cs">
+      <DependentUpon>EditDonut.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -127,6 +134,9 @@
       <Project>{cc7e46e7-1e18-4446-b356-c9c1827d87b5}</Project>
       <Name>ViewModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="back1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

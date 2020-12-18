@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AdditionalInterfaces\BaseViewModel.cs" />
     <Compile Include="AddEditViewModel.cs" />
+    <Compile Include="AdditionalInterfaces\InatgerValidation.cs" />
     <Compile Include="AdditionalInterfaces\IWindow.cs" />
     <Compile Include="AdditionalInterfaces\ModelCommand.cs" />
     <Compile Include="AdditionalInterfaces\StringValidation.cs" />

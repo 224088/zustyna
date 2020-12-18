@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace Presentation.ViewModel.AdditionalInterfaces
 {
-   public class StringValidation : ValidationRule
+    public class IntagerValidation : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
@@ -17,13 +17,11 @@ namespace Presentation.ViewModel.AdditionalInterfaces
 
             if (string.IsNullOrEmpty(strValue))
                 return new ValidationResult(false, $"Value cannot be coverted to string.");
-            bool canConvert = false;
-            
-            
-          
-                    canConvert =(strValue.Length<30);
-                    return canConvert ? new ValidationResult(true, null) : new ValidationResult(false, $"Input should be type of string and less then 30 characters");
-       
+            bool canConvert = false;         
+            int intVal = 0;
+            canConvert = int.TryParse(strValue, out intVal);
+            return canConvert ? new ValidationResult(true, null) : new ValidationResult(false, $"Input should be a number");
+           
         }
     }
 }
