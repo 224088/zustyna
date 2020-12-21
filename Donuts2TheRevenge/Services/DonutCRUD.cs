@@ -69,7 +69,7 @@ namespace Services
                 return true;
             }
         }
-        static public bool updatePrice(int id, int cost)
+        static public bool updatePrice(int id, int? cost)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
@@ -79,7 +79,7 @@ namespace Services
                 return true;
             }
         }
-        static public bool updateQuantity(int id, int amount) 
+        static public bool updateQuantity(int id, int? amount) 
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {

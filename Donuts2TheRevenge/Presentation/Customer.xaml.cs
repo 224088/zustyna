@@ -27,7 +27,9 @@ namespace Presentation
         {
             InitializeComponent();
             this.Loaded += (s, e) => { this.DataContext = this.CustomerViewModel; };
-            //CustomerViewModel.ChildWindow = new Lazy<IWindow>(() => new AddCustomer());
+            CustomerViewModel.NewWindow = new Lazy<IWindow>(() => new AddCustomer());
+            CustomerViewModel.EditWindow = new Lazy<IWindow>(() => new EditCustomer());
+
         }
     }
 }

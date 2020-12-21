@@ -18,12 +18,16 @@ namespace Presentation.ViewModel
         public DonutViewModel()
         {
             this.RefreshDonuts();
-            AddDonutCommand = new ModelCommand(o=>AddDonut() );
+            AddDonutCommand = new ModelCommand(AddDonut);
+            EditDonutCommand = new ModelCommand(EditDonut);
+            DeleteDonutCommand = new ModelCommand(DeleteDonuts);
+            RefreshDonutCommand = new ModelCommand(RefreshDonuts);
         }
 
         private void RefreshDonuts()
         {
-            Task.Run(() => this.Donuts =  donutCRUD.GetAllDonuts()); 
+            Task.Run(() => this.Donuts =  donutCRUD.GetAllDonuts());
+            this.OnPropertyChanged("Donuts");
         }
 
         private IEnumerable <donut> donuts;
@@ -42,49 +46,85 @@ namespace Presentation.ViewModel
         }
 
 
-        private donut currentDonut; 
-        public donut CurrentDonut
+        private static donut currentDonut; 
+        public  donut CurrentDonut
         {
             get
             {
-                return this.currentDonut;
+                return currentDonut;
             }
              set
             {
-                this.currentDonut = value;
+                currentDonut = value;
                 this.OnPropertyChanged("CurrentDonut");
-               // this.RefreshInfoDonut();
-
+             
             }
 
         }
 
-        private void RefreshInfoDonut()
-        {
-            throw new NotImplementedException();
-        }
-
+       
 
         public ModelCommand AddDonutCommand
         
           {
                 get; private set;
         }
+        public ModelCommand DeleteDonutCommand
+
+        {
+            get; private set;
+        }
 
 
         public Lazy<IWindow> ChildWindow { get; set; }
+
+        public Lazy<IWindow> EditWindow { get; set; }
+
+
         private void AddDonut()
         {
-            System.Diagnostics.Debug.WriteLine("This is a log");
+          
 
             IWindow _child = ChildWindow.Value;
             _child.Show();
 
         }
 
-       
 
 
-       
+        private void EditDonut()
+        {
+
+            IWindow newWindow = EditWindow.Value;
+            newWindow.Show();
+
+        }
+
+        private void DeleteDonuts()
+        {
+          donutCRUD.deleteDonut(CurrentDonut.donut_id);
+            RefreshDonuts();
+        }
+
+
+        public ModelCommand RefreshDonutCommand
+
+        {
+            get; private set;
+        }
+
+
+        public ModelCommand EditDonutCommand
+
+        {
+            get; private set;
+        }
+
+        public static donut RetriveDonut()
+        {
+            return currentDonut;
+        }
+
+
     }
 }

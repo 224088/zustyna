@@ -1,4 +1,5 @@
-﻿using Presentation.ViewModel.AdditionalInterfaces;
+﻿using Presentation.ViewModel;
+using Presentation.ViewModel.AdditionalInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Presentation.DonutFollow
+namespace Presentation
 {
     /// <summary>
     /// Logika interakcji dla klasy EditDonut.xaml
@@ -21,9 +22,13 @@ namespace Presentation.DonutFollow
     public partial class EditDonut : Window, IWindow
 
     {
+        private AddEditViewModel viewModel = new AddEditViewModel();
         public EditDonut()
         {
             InitializeComponent();
+            this.Loaded += (s, e) => { this.DataContext = this.viewModel; };
+            viewModel.MessageBoxShowDelegate = text => MessageBox.Show(text, "Button interaction", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
     }
 }

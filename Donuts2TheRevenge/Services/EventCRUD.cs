@@ -48,6 +48,19 @@ namespace Services
             }
         }
 
+
+        static public void DeleteEventsForCustomer(int Id)
+        {
+            using (DataClasses1DataContext context = new DataClasses1DataContext())
+            {
+                IEnumerable<@event> events = context.@event.Where(e => e.customer == Id);
+                foreach (@event e in events)
+                {
+                    context.@event.DeleteOnSubmit(e);
+                    context.SubmitChanges();
+                }
+            }
+        }
         static public bool updateTime(int id, DateTime time)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
@@ -222,6 +235,25 @@ namespace Services
                 }
                 return result;
             }
+        }
+
+        static public bool BuyDonut(int id, donut d, customer c, int amount)
+        {
+            using (DataClasses1DataContext context = new DataClasses1DataContext())
+            {
+                if (d != null && c != null)
+                {
+                    if (d.quantity > 0 && d.quantity>amount)
+                    {
+
+                        addEvent(id,DateTime.Today, false, amount ,d.donut_id, c.customer_id);
+                        d.quantity = d.quantity - amount;
+                        donutCRUD.updateQuantity(d.donut_id, d.quantity);
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
 

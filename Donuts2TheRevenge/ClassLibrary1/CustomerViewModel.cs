@@ -22,7 +22,10 @@ namespace Presentation.ViewModel
         public CustomerViewModel()
         {
             
-            AddCustomerCommand = new ModelCommand(o => AddCustomer());
+            AddCustomerCommand = new ModelCommand( AddCustomer);
+            EditCustomerCommand = new ModelCommand(EditCustomer);
+            DeleteCustomerCommand = new ModelCommand(DeleteCustomer);
+            RefreshCustomerCommand = new ModelCommand(RefreshCustomers);
             RefreshCustomers();
         }
 
@@ -44,17 +47,17 @@ namespace Presentation.ViewModel
         }
 
         /*Master detail - displays events for selected customer*/
-        private customer currentCustomer;
+        private static customer currentCustomer;
         public customer CurrentCustomer
         {
             get
             {
-                return this.currentCustomer;
+                return currentCustomer;
             }
 
             set
             {
-                this.currentCustomer = value;
+                currentCustomer = value;
                 OnPropertyChanged("CurrentCustomer");
                 this.RefreshEvents();
             }
@@ -76,8 +79,9 @@ namespace Presentation.ViewModel
         private void RefreshEvents()
 
         {
-            
-            Task.Run(() => this.Events = EventCRUD.GetEventsByCustomerName(CurrentCustomer.customer_f_name, CurrentCustomer.customer_l_name));
+            if(this.CurrentCustomer != null)
+                Task.Run(() => this.Events = EventCRUD.GetEventsByCustomerName(CurrentCustomer.customer_f_name, CurrentCustomer.customer_l_name));
+     
         }
 
         /*Display book for selected event */
@@ -132,7 +136,30 @@ namespace Presentation.ViewModel
             get; private set;
         }
 
+        public ModelCommand EditCustomerCommand
+
+        {
+            get; private set;
+        }
+
+
+        public ModelCommand RefreshCustomerCommand
+
+        {
+            get; private set;
+        }
+
+        public ModelCommand DeleteCustomerCommand
+
+        {
+            get; private set;
+        }  
+
+
         public Lazy<IWindow> NewWindow { get; set; }
+
+
+        public Lazy<IWindow> EditWindow { get; set; }
 
         private void AddCustomer()
         {
@@ -140,7 +167,25 @@ namespace Presentation.ViewModel
             newWindow.Show();
         }
 
+        private void EditCustomer()
+        {
+            IWindow editWindow = EditWindow.Value;
+            editWindow.Show();
+        }
 
+
+
+
+        private void DeleteCustomer()
+        {
+            CustomerCRUD.deleteCustomer(CurrentCustomer.customer_id);
+            RefreshCustomers();
+        }
+
+        public static customer RetriveCustomer()
+        {
+            return currentCustomer;
+        }
 
 
     }

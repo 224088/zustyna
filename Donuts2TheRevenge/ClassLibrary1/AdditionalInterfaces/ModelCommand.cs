@@ -10,16 +10,16 @@ namespace Presentation.ViewModel.AdditionalInterfaces
     public class ModelCommand : ICommand
     {
 
-        private readonly Action<object> _execute = null;
-        private readonly Predicate<object> _canExecute = null;
+        private readonly Action execute = null;
+        private readonly Predicate<object> canExecute = null;
 
-        public ModelCommand(Action<object> execute)
+        public ModelCommand(Action execute)
             : this(execute, null) { }
 
-        public ModelCommand(Action<object> execute, Predicate<object> canExecute)
+        public ModelCommand(Action execute, Predicate<object> canExecute)
         {
-            _execute = execute;
-            _canExecute = canExecute;
+            this.execute = execute;
+            this.canExecute = canExecute;
         }
 
 
@@ -29,13 +29,14 @@ namespace Presentation.ViewModel.AdditionalInterfaces
 
         public bool CanExecute(object parameter)
         {
-            return _canExecute != null ? _canExecute(parameter) : true;
+            return canExecute != null ? canExecute(parameter) : true;
         }
 
         public void Execute(object parameter)
         {
-            if (_execute != null)
-                _execute(parameter);
+           
+            this.execute();
+
         }
 
         public void OnCanExecuteChanged()

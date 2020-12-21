@@ -12,23 +12,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Presentation
 {
     /// <summary>
-    /// Logika interakcji dla klasy Donut.xaml
+    /// Logika interakcji dla klasy EditCustomer.xaml
     /// </summary>
-    public partial class Donut : UserControl
+    public partial class EditCustomer : Window, IWindow
     {
-        private DonutViewModel viewModel = new DonutViewModel();
-        public Donut()
+
+        private AddEditCustomerViewModel viewModel = new AddEditCustomerViewModel();
+
+        public EditCustomer()
         {
             InitializeComponent();
             this.Loaded += (s, e) => { this.DataContext = this.viewModel; };
-            viewModel.ChildWindow = new Lazy<IWindow>(() => new AddDonut());
-            viewModel.EditWindow = new Lazy<IWindow>(() => new EditDonut());
+            viewModel.MessageBoxShowDelegate = text => MessageBox.Show(text, "Button interaction", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

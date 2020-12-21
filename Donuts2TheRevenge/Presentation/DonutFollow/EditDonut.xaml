@@ -1,12 +1,83 @@
-﻿<Window x:Class="Presentation.DonutFollow.EditDonut"
+﻿<Window x:Class="Presentation.EditDonut"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Presentation.DonutFollow"
+        xmlns:validationRule="clr-namespace:Presentation.ViewModel.AdditionalInterfaces;assembly=ClassLibrary1"
         mc:Ignorable="d"
-        Title="EditDonut" Height="450" Width="800">
+        Title="EditDonut" Height="307.229" Width="586.747">
     <Grid>
+        <TextBlock HorizontalAlignment="Center"  Text="Edit your Donut" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="110" Margin="237,0,232,0"/>
+        <TextBlock HorizontalAlignment="Center" Margin="278,48,258,0" TextWrapping="Wrap" Text="Name" Height="15" VerticalAlignment="Top" Width="43"/>
+
+        <TextBox  x:Name="CName" HorizontalAlignment="Center" Height="26" Margin="114,63,108,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="357" >
+            <TextBox.Text>
+                <Binding Path="CurrentDonut.donut_name"  Mode="TwoWay"
+                 ValidatesOnDataErrors="True"
+                         NotifyOnValidationError="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRule:StringValidation  />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <ItemsControl ItemsSource="{Binding}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ErrorContent}" Foreground="Red"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
+
+        <TextBlock HorizontalAlignment="Center" Margin="278,102,245,0" TextWrapping="Wrap" Text="Filling" Height="20" VerticalAlignment="Top" Width="56"/>
+
+        <TextBox x:Name="CFilling" HorizontalAlignment="Center" Height="26" Margin="114,122,108,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="357">
+            <TextBox.Text>
+                <Binding Path="CurrentDonut.filling"  Mode="TwoWay"
+                 ValidatesOnDataErrors="True"
+                         NotifyOnValidationError="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRule:StringValidation  />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+
+
+        <TextBlock HorizontalAlignment="Center" Margin="211,165,322,0" TextWrapping="Wrap" Text="Price" Height="14" VerticalAlignment="Top" Width="46"/>
+
+        <TextBox x:Name="CPrice" HorizontalAlignment="Center" Height="24" Margin="196,184,322,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="61">
+            <TextBox.Text>
+                <Binding Path="CurrentDonut.price"  Mode="TwoWay"
+                 ValidatesOnDataErrors="True"
+                         NotifyOnValidationError="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRule:IntagerValidation  />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+
+        <TextBlock HorizontalAlignment="Center" Margin="40,23,494,0" TextWrapping="Wrap" Text="ID" Height="14" VerticalAlignment="Top" Width="45"/>
+        <TextBox  x:Name="CID" HorizontalAlignment="Center" Height="24" Margin="25,42,494,0"  TextWrapping="Wrap"  VerticalAlignment="Top" Width="60" IsReadOnly="True" Text="{Binding CurrentDonut.donut_id}" />    
         
+        <Button Content="Confirm" Margin="396,0,0,63"  Command="{Binding EditDonutCommand}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75">
+            
+        </Button>
+
+
+
     </Grid>
 </Window>

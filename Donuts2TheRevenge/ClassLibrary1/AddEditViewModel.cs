@@ -15,11 +15,19 @@ namespace Presentation.ViewModel
 
         public AddEditViewModel()
         {
-            AddDonutCommand = new ModelCommand(o => AddDonut());
-            currentDonut = new donut();
+            AddDonutCommand = new ModelCommand(AddDonut);
+            EditDonutCommand = new ModelCommand(EditDonut);
+            currentDonut = DonutViewModel.RetriveDonut();
+            NewDonut = new donut();
+                //new donut();
         }
 
         public ModelCommand AddDonutCommand
+
+        {
+            get; private set;
+        }
+        public ModelCommand EditDonutCommand
 
         {
             get; private set;
@@ -28,14 +36,34 @@ namespace Presentation.ViewModel
         public void AddDonut()
         {
            
-            bool added = donutCRUD.addDonut(currentDonut.donut_id,currentDonut.quantity,currentDonut.donut_name,currentDonut.filling,currentDonut.price);
-            if (added)
-            {
-                actionText = "Reader Added";
+            bool added = donutCRUD.addDonut(newDonut.donut_id,newDonut.quantity,newDonut.donut_name,newDonut.filling,newDonut.price);
+            if (added) { 
+            
+                actionText = "Donut Added";
             }
             else
             {
-                actionText = "Reader already exists in the database";
+                actionText = "Donut with such ID already exists in the database";
+            }
+            MessageBoxShowDelegate(ActionText);
+
+        }
+
+        public void EditDonut()
+        {
+
+            bool editedN = donutCRUD.updateName(currentDonut.donut_id, currentDonut.donut_name);
+            bool editedF = donutCRUD.updateFilling(currentDonut.donut_id, currentDonut.filling);
+            bool editedP = donutCRUD.updatePrice(currentDonut.donut_id, currentDonut.price);
+            bool editedQ = donutCRUD.updateQuantity(currentDonut.donut_id, currentDonut.quantity);
+
+            if (editedN && editedF && editedP && editedQ)
+            {
+                actionText = "Donut Edited";
+            }
+            else
+            {
+                actionText = "Donut with such ID already exists in the database";
             }
             MessageBoxShowDelegate(ActionText);
 
@@ -53,6 +81,22 @@ namespace Presentation.ViewModel
                 this.currentDonut = value;
                 this.OnPropertyChanged("CurrentDonut");
                
+            }
+
+        }
+
+        private donut newDonut;
+        public donut NewDonut
+        {
+            get
+            {
+                return this.newDonut;
+            }
+            set
+            {
+                this.newDonut = value;
+                this.OnPropertyChanged("NewDonut");
+
             }
 
         }

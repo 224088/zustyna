@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentation.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace Presentation
     /// </summary>
     public partial class BuyDonut : UserControl
     {
+        private BuyDonutViewModel viewModel = new BuyDonutViewModel();
         public BuyDonut()
         {
             InitializeComponent();
+            this.Loaded += (s, e) => { this.DataContext = this.viewModel; };
+            viewModel.MessageBoxShowDelegate = text => MessageBox.Show(text, "Button interaction", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

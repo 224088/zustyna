@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CustomerFollow\AddCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DonutFollow\AddDonut.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -75,10 +79,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomerFollow\EditCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="CustomerFollow\AddCustomer.xaml.cs">
+      <DependentUpon>AddCustomer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DonutFollow\AddDonut.xaml.cs">
       <DependentUpon>AddDonut.xaml</DependentUpon>
     </Compile>
@@ -97,6 +108,9 @@
     </Compile>
     <Compile Include="DonutFollow\EditDonut.xaml.cs">
       <DependentUpon>EditDonut.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerFollow\EditCustomer.xaml.cs">
+      <DependentUpon>EditCustomer.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -137,6 +151,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="back1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="back2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="buy.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

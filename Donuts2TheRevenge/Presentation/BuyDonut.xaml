@@ -3,10 +3,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:validationRule="clr-namespace:Presentation.ViewModel.AdditionalInterfaces;assembly=ClassLibrary1"
              xmlns:local="clr-namespace:Presentation"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.Background>
+            <ImageBrush ImageSource="buy.jpg" Stretch="Uniform"/>
+        </Grid.Background>
+        <ComboBox HorizontalAlignment="Left" Margin="231,56,0,0" ItemsSource="{Binding Path=Donuts}" DisplayMemberPath="donut_name" SelectedItem="{Binding Path=CurrentDonut, Mode=TwoWay}" VerticalAlignment="Top" Width="342"/>
+
+
+        <TextBox HorizontalAlignment="Left" Height="29" Margin="55,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91">
+            <TextBox.Text>
+                <Binding Path="NewOrderID"  Mode="TwoWay"
+                 ValidatesOnDataErrors="True"
+                         NotifyOnValidationError="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRule:IntagerValidation  />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Left" Margin="76,96,0,0" TextWrapping="Wrap" Text="Order ID" VerticalAlignment="Top"/>
+
+
+        <TextBlock HorizontalAlignment="Left" Margin="79,205,0,0" TextWrapping="Wrap" Text="Amount" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Height="49" Margin="45,226,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="112" FontSize="16">
+            <TextBox.Text>
+                <Binding Path="NewQuantity" Mode="TwoWay"
+                 ValidatesOnDataErrors="True"
+                         NotifyOnValidationError="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRule:IntagerValidation  />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+       
+        <TextBlock HorizontalAlignment="Left" Margin="79,151,0,0" TextWrapping="Wrap" Text="Max Order" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="68,172,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="68" FontSize="16">
+            <Binding Path="CurrentDonut.quantity"/>
+        </TextBox>
+        <ComboBox HorizontalAlignment="Left" Margin="231,10,0,0" ItemsSource="{Binding Customers}" DisplayMemberPath="customer_f_name" SelectedItem="{Binding CurrentCustomer, Mode=TwoWay}" VerticalAlignment="Top" Width="342"/>
+
+
+        <Button Content="BUY" HorizontalAlignment="Left" Height="29" Margin="34,292,0,0" Command="{Binding BuyDonutCommand}" VerticalAlignment="Top" Width="129">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=CurrentDonut.donut_name}" Value="{x:Null}"/>
+                                <Condition Binding="{Binding Path=CurrentCustomer.customer_f_name}" Value="{x:Null}"/>
+                               
+                            </MultiDataTrigger.Conditions>
+                          
+                            <Setter Property="IsEnabled" Value="False"/>
+                            </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="65,17,0,0" VerticalAlignment="Top" Width="57" Command="{Binding RefreshDonutCommand}"/>
+
+
     </Grid>
 </UserControl>

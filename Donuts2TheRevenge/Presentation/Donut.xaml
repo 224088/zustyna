@@ -11,7 +11,7 @@
             <ImageBrush ImageSource="back1.jpg"  Stretch="UniformToFill"/>
         </Grid.Background>
         <Border BorderBrush="Black" BorderThickness="1" Background="AliceBlue" HorizontalAlignment="Left" Height="106" Margin="348,45,0,0" VerticalAlignment="Top" Width="77"/>
-        <ComboBox Margin="10,10,484,379" ItemsSource="{Binding Path=Donuts}" DisplayMemberPath="donut_name" Grid.Row="1"
+        <ComboBox x:Name="Cname" Margin="10,10,484,379" ItemsSource="{Binding Path=Donuts}" DisplayMemberPath="donut_name" Grid.Row="1"
                   SelectedItem="{Binding Path=CurrentDonut, Mode=TwoWay}"/>
 
         <TextBlock FontSize="16"  Margin="436,29,52,366"><Run Text="Click on donut to display its details:"/></TextBlock>
@@ -37,9 +37,31 @@
 
 
         <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="418,341,0,0" Command="{Binding AddDonutCommand}"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" Margin="346,10,0,0" VerticalAlignment="Top" Width="57" Command="{Binding RefreshCommand}"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="543,341,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="673,341,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="346,10,0,0" VerticalAlignment="Top" Width="57" Command="{Binding RefreshDonutCommand}"/>
+        <Button Content="Edit" HorizontalAlignment="Left" Margin="543,341,0,0" VerticalAlignment="Top" Width="75" Command="{Binding EditDonutCommand}">
+        <Button.Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=CurrentDonut.donut_name}" Value="{x:Null}">
+                        <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+            </Style>
+        </Button.Style>
+        </Button>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="673,341,0,0" VerticalAlignment="Top"  Command="{Binding DeleteDonutCommand}" Width="75">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=CurrentDonut.donut_name}" Value="{x:Null}">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
       
 
