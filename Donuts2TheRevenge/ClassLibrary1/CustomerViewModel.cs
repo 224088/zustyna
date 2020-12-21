@@ -46,7 +46,6 @@ namespace Presentation.ViewModel
             }
         }
 
-        /*Master detail - displays events for selected customer*/
         private static customer currentCustomer;
         public customer CurrentCustomer
         {

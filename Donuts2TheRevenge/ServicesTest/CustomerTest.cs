@@ -60,7 +60,7 @@ namespace ServicesTest
         public void GetAllCustomersTest()
         {
             IEnumerable<customer> customers = CustomerCRUD.GetAllCustomers();
-            Assert.AreEqual(customers.Count(), 5);
+            Assert.AreEqual(customers.Count(), 4);
         }
 
         [TestMethod]
