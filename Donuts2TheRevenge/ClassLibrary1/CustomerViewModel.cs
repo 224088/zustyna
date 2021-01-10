@@ -1,4 +1,5 @@
-﻿using Data;
+﻿
+using Presentation.Model;
 using Presentation.ViewModel.AdditionalInterfaces;
 using Services;
 using System;
@@ -14,10 +15,6 @@ namespace Presentation.ViewModel
     {
 
 
-        //private donutCRUD DonutService = new donutCRUD() ;
-        //private CustomerCRUD customerService;
-       // private EventCRUD eventService;
-        //private donutCRUD donutService;
 
         public CustomerViewModel()
         {
@@ -31,11 +28,11 @@ namespace Presentation.ViewModel
 
         private void RefreshCustomers()
         {
-            Task.Run(() => this.Customers = CustomerCRUD.GetAllCustomers());
+            Task.Run(() => this.Customers = GetCustomersModelsConverter());
         }
 
-        private IEnumerable<customer> customers;
-        public IEnumerable<customer> Customers
+        private IEnumerable<CustomerModel> customers;
+        public IEnumerable<CustomerModel> Customers
         {
             get => customers;
 
@@ -46,8 +43,8 @@ namespace Presentation.ViewModel
             }
         }
 
-        private static customer currentCustomer;
-        public customer CurrentCustomer
+        private static CustomerModel currentCustomer;
+        public CustomerModel CurrentCustomer
         {
             get
             {
@@ -62,8 +59,8 @@ namespace Presentation.ViewModel
             }
         }
 
-        private IEnumerable<@event> events;
-        public IEnumerable<@event> Events
+        private IEnumerable<EventModel> events;
+        public IEnumerable<EventModel> Events
         {
             get
             {
@@ -79,13 +76,13 @@ namespace Presentation.ViewModel
 
         {
             if(this.CurrentCustomer != null)
-                Task.Run(() => this.Events = EventCRUD.GetEventsByCustomerName(CurrentCustomer.customer_f_name, CurrentCustomer.customer_l_name));
+                Task.Run(() => this.Events = GetEventsforCustomerModelsConverter(CurrentCustomer.customer_f_name, CurrentCustomer.customer_l_name));
      
         }
 
         /*Display book for selected event */
-        private @event currentEvent;
-        public @event CurrentEvent
+        private EventModel currentEvent;
+        public EventModel CurrentEvent
         {
             get
             {
@@ -99,8 +96,8 @@ namespace Presentation.ViewModel
             }
         }
 
-        private donut donut;
-        public donut Donut
+        private DonutModel donut;
+        public DonutModel Donut
         {
             get
             {
@@ -118,7 +115,7 @@ namespace Presentation.ViewModel
             // System.Diagnostics.Debug.WriteLine(CurrentEvent.donut);
             if (currentEvent != null)
             {
-                Task.Run(() => this.Donut = donutCRUD.GetDonut(CurrentEvent.donut));
+                Task.Run(() => this.Donut = GetDonutModel(CurrentEvent.donut));
             }
             else
             {
@@ -181,11 +178,45 @@ namespace Presentation.ViewModel
             RefreshCustomers();
         }
 
-        public static customer RetriveCustomer()
+        public static CustomerModel RetriveCustomer()
         {
             return currentCustomer;
         }
 
+        public IEnumerable<CustomerModel> GetCustomersModelsConverter()
+        {
+            List<Dictionary<string, string>> retrived = CustomerCRUD.GetCustomersInfo();
+            List<CustomerModel> temp = new List<CustomerModel>();
 
+            foreach (Dictionary<string, string> dict in retrived)
+            {
+                CustomerModel t = new CustomerModel();
+                t.Converter(dict);
+                temp.Add(t);
+            }
+            return temp;
+        }
+
+        public IEnumerable<EventModel> GetEventsforCustomerModelsConverter(string f_name,string l_name)
+        {
+            List<Dictionary<string, string>> retrived = EventCRUD.GetEventsInfoforCustomer(f_name,l_name);
+            List<EventModel> temp = new List<EventModel>();
+
+            foreach (Dictionary<string, string> dict in retrived)
+            {
+                EventModel t = new EventModel();
+                t.Converter(dict);
+                temp.Add(t);
+            }
+            return temp;
+        }
+
+        public DonutModel GetDonutModel(int donut_id)
+        {
+            DonutModel temp = new DonutModel();
+            temp.Converter(donutCRUD.GetDonutInfo(donut_id));
+            return temp;
+
+        }
     }
 }

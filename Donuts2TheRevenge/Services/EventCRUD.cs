@@ -203,6 +203,27 @@ namespace Services
             }
         }
 
+        static public List<Dictionary<string, string>> GetEventsInfoforCustomer(string name, string surname)
+
+        {
+            List<Dictionary<string, string>> returnList = new List<Dictionary<string, string>>();
+            List<@event> tempE = GetEventsByCustomerName(name,surname).ToList();
+            foreach (@event e in tempE)
+            {
+                Dictionary<string, string> temp = new Dictionary<string, string>();
+                temp.Add("id", e.event_id.ToString());
+                temp.Add("time",e.event_time.ToString() );
+                temp.Add("is_stocking", e.is_stocking_event.ToString());
+                temp.Add("amount", e.amount.ToString());
+                temp.Add("donut", e.donut.ToString());
+                temp.Add("customer", e.customer.ToString());
+
+                returnList.Add(temp);
+
+            }
+            return returnList;
+        }
+
         static public IEnumerable<@event> GetEventsByCustomerName(string name, string surname)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
@@ -237,18 +258,18 @@ namespace Services
             }
         }
 
-        static public bool BuyDonut(int id, donut d, customer c, int amount)
+        static public bool BuyDonut(int id, int d, int c, int amount)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
             {
-                if (d != null && c != null)
+                if (donutCRUD.GetDonut(d) != null && c != null)
                 {
-                    if (d.quantity > 0 && d.quantity>amount)
+                    if (donutCRUD.GetDonut(d).quantity > 0 && donutCRUD.GetDonut(d).quantity>amount)
                     {
 
-                        addEvent(id,DateTime.Today, false, amount ,d.donut_id, c.customer_id);
-                        d.quantity = d.quantity - amount;
-                        donutCRUD.updateQuantity(d.donut_id, d.quantity);
+                        addEvent(id,DateTime.Today, false, amount , donutCRUD.GetDonut(d).donut_id, CustomerCRUD.GetCustomer(c).customer_id);
+                        donutCRUD.GetDonut(d).quantity = donutCRUD.GetDonut(d).quantity - amount;
+                        donutCRUD.updateQuantity(donutCRUD.GetDonut(d).donut_id, donutCRUD.GetDonut(d).quantity);
                         return true;
                     }
                 }

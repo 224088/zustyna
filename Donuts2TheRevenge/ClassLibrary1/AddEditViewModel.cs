@@ -1,4 +1,5 @@
-﻿using Data;
+﻿
+using Presentation.Model;
 using Presentation.ViewModel.AdditionalInterfaces;
 using Services;
 using System;
@@ -18,7 +19,7 @@ namespace Presentation.ViewModel
             AddDonutCommand = new ModelCommand(AddDonut);
             EditDonutCommand = new ModelCommand(EditDonut);
             currentDonut = DonutViewModel.RetriveDonut();
-            NewDonut = new donut();
+            NewDonut = new DonutModel();
                 //new donut();
         }
 
@@ -69,8 +70,8 @@ namespace Presentation.ViewModel
 
         }
 
-        private donut currentDonut;
-        public donut CurrentDonut
+        private DonutModel currentDonut;
+        public DonutModel CurrentDonut
         {
             get
             {
@@ -85,8 +86,8 @@ namespace Presentation.ViewModel
 
         }
 
-        private donut newDonut;
-        public donut NewDonut
+        private DonutModel newDonut;
+        public DonutModel NewDonut
         {
             get
             {

@@ -1,4 +1,5 @@
 ﻿using Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -103,6 +104,41 @@ namespace Services
                 }
                 return null;
             }
+        }
+
+        static public List<Dictionary<string,string>> GetDonutsInfo()
+   
+        {
+            List<Dictionary<string, string>> returnList = new List<Dictionary<string, string>>();
+            List<donut> tempDonuts = GetAllDonuts().ToList();
+            foreach (donut donut in tempDonuts)
+            {
+                Dictionary<string, string> temp = new Dictionary<string, string>();
+                temp.Add("name",donut.donut_name);
+                    temp.Add("id", donut.donut_id.ToString());
+                temp.Add("filling",donut.filling);
+                temp.Add("price", donut.price.ToString());
+                temp.Add("quantity", donut.quantity.ToString());
+
+                returnList.Add(temp);
+
+            }
+            return returnList;
+        }
+        static public Dictionary<string, string> GetDonutInfo(int donut_id)
+
+        {
+            Dictionary<string, string> temp = new Dictionary<string, string>();
+            donut t = GetDonut(donut_id);
+         
+                temp.Add("name", t.donut_name);
+                temp.Add("id", t.donut_id.ToString());
+                temp.Add("filling", t.filling);
+                temp.Add("price", t.price.ToString());
+                temp.Add("quantity", t.quantity.ToString());
+
+            
+            return temp;
         }
 
         static public donut GetDonutByName(string name)

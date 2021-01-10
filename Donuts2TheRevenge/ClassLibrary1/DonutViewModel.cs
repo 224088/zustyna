@@ -1,4 +1,5 @@
-﻿using Data;
+﻿
+using Presentation.Model;
 using Presentation.ViewModel.AdditionalInterfaces;
 using Services;
 using System;
@@ -26,12 +27,12 @@ namespace Presentation.ViewModel
 
         private void RefreshDonuts()
         {
-            Task.Run(() => this.Donuts =  donutCRUD.GetAllDonuts());
+            Task.Run(() =>  this.Donuts = GetDonutsModelsConverter());
             this.OnPropertyChanged("Donuts");
         }
 
-        private IEnumerable <donut> donuts;
-        public IEnumerable<donut> Donuts
+        private IEnumerable <DonutModel> donuts;
+        public IEnumerable<DonutModel> Donuts
         {
             get
             {
@@ -46,8 +47,8 @@ namespace Presentation.ViewModel
         }
 
 
-        private static donut currentDonut; 
-        public  donut CurrentDonut
+        private static DonutModel currentDonut; 
+        public  DonutModel CurrentDonut
         {
             get
             {
@@ -120,9 +121,23 @@ namespace Presentation.ViewModel
             get; private set;
         }
 
-        public static donut RetriveDonut()
+        public static DonutModel RetriveDonut()
         {
             return currentDonut;
+        }
+
+        public IEnumerable<DonutModel> GetDonutsModelsConverter()
+        {
+            List <Dictionary<string, string>> retrived = donutCRUD.GetDonutsInfo();
+            List<DonutModel> temp = new List<DonutModel>();
+
+            foreach(Dictionary<string,string> dict in retrived)
+            {
+                DonutModel t = new DonutModel();
+                t.Converter(dict);
+                temp.Add(t);
+            }
+            return temp;
         }
 
 

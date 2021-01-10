@@ -89,6 +89,24 @@ namespace Services
             }
         }
 
+        static public List<Dictionary<string, string>> GetCustomersInfo()
+
+        {
+            List<Dictionary<string, string>> returnList = new List<Dictionary<string, string>>();
+            List<customer> tempC = GetAllCustomers().ToList();
+            foreach (customer customer in tempC)
+            {
+                Dictionary<string, string> temp = new Dictionary<string, string>();
+                temp.Add("f_name", customer.customer_f_name);
+                temp.Add("id", customer.customer_id.ToString());
+                temp.Add("l_name", customer.customer_l_name);
+               
+                returnList.Add(temp);
+
+            }
+            return returnList;
+        }
+
         static public IEnumerable<customer> GetCustomersByName(string name)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())

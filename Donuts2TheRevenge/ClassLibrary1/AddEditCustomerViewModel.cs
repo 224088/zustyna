@@ -1,4 +1,5 @@
-﻿using Data;
+﻿
+using Presentation.Model;
 using Presentation.ViewModel.AdditionalInterfaces;
 using Services;
 using System;
@@ -18,7 +19,7 @@ namespace Presentation.ViewModel
                 AddCustomerCommand = new ModelCommand(AddCustomer);
                 EditCustomerCommand = new ModelCommand(EditCustomer);
                 currentCustomer = CustomerViewModel.RetriveCustomer();
-                newCustomer = new customer();
+                newCustomer = new CustomerModel();
             
         }
 
@@ -68,8 +69,8 @@ namespace Presentation.ViewModel
 
             }
 
-            private customer currentCustomer;
-            public customer CurrentCustomer
+            private CustomerModel currentCustomer;
+            public CustomerModel CurrentCustomer
             {
                 get
                 {
@@ -85,8 +86,8 @@ namespace Presentation.ViewModel
 
             }
 
-            private customer newCustomer;
-            public customer NewCustomer
+            private CustomerModel newCustomer;
+            public CustomerModel NewCustomer
             {
                 get
                 {

@@ -62,9 +62,9 @@
       <Project>{CC7E46E7-1E18-4446-B356-C9C1827D87B5}</Project>
       <Name>ViewModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{20336838-0BE1-48D5-BED0-56DD654C3A12}</Project>
-      <Name>Data</Name>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{26ae639f-c85d-42f6-80a1-e9e9146fa3c8}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

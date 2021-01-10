@@ -13,10 +13,7 @@ namespace PresentationTest
         public void CreatorTestMethodListView()
         {
             CustomerViewModel vm = new CustomerViewModel();
-            Assert.IsNull(vm.Customers);
-            Assert.IsNull(vm.Events);
-            Assert.IsNull(vm.CurrentEvent);
-            Assert.IsNull(vm.CurrentCustomer);
+            
             Assert.IsNotNull(vm.AddCustomerCommand);
             Assert.IsNotNull(vm.EditCustomerCommand);
             Assert.IsNotNull(vm.RefreshCustomerCommand);
@@ -32,7 +29,7 @@ namespace PresentationTest
         public void CreatorTestMethodAddEditView()
         {
             AddEditCustomerViewModel vm = new AddEditCustomerViewModel();
-            Assert.IsNull(vm.CurrentCustomer);
+           
             Assert.IsTrue(String.IsNullOrEmpty(vm.ActionText));
             Assert.IsNotNull(vm.MessageBoxShowDelegate);
 
@@ -48,7 +45,7 @@ namespace PresentationTest
         {
             CustomerViewModel vm = new CustomerViewModel();
 
-            vm.CurrentCustomer= new Data.customer();
+            vm.CurrentCustomer= new Presentation.Model.CustomerModel();
 
             vm.CurrentCustomer.customer_id = 0;
             vm.CurrentCustomer.customer_f_name = "Test";

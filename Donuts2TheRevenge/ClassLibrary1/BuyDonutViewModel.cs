@@ -1,4 +1,5 @@
-﻿using Data;
+﻿
+using Presentation.Model;
 using Presentation.ViewModel.AdditionalInterfaces;
 using Services;
 using System;
@@ -30,7 +31,7 @@ namespace Presentation.ViewModel
         {
             bool ordered = false;
             if (this.currentDonut != null && this.currentCustomer != null)
-               ordered= EventCRUD.BuyDonut(NewOrderID, currentDonut, currentCustomer, newQuantity);
+               ordered= EventCRUD.BuyDonut(NewOrderID, currentDonut.donut_id, currentCustomer.customer_id, newQuantity);
 
             if(ordered)
             {
@@ -45,12 +46,12 @@ namespace Presentation.ViewModel
 
         private void RefreshDonuts()
         {
-            Task.Run(() => this.Donuts = donutCRUD.GetAllDonuts());
+            Task.Run(() => this.Donuts = GetDonutsModelsConverter());
             this.OnPropertyChanged("Donuts");
         }
 
-        private IEnumerable<donut> donuts;
-        public IEnumerable<donut> Donuts
+        private IEnumerable<DonutModel> donuts;
+        public IEnumerable<DonutModel> Donuts
         {
             get
             {
@@ -67,11 +68,11 @@ namespace Presentation.ViewModel
 
         private void RefreshCustomers()
         {
-            Task.Run(() => this.Customers = CustomerCRUD.GetAllCustomers());
+            Task.Run(() => this.Customers = GetCustomersModelsConverter());
         }
 
-        private IEnumerable<customer> customers;
-        public IEnumerable<customer> Customers
+        private IEnumerable<CustomerModel> customers;
+        public IEnumerable<CustomerModel> Customers
         {
             get => customers;
 
@@ -83,8 +84,8 @@ namespace Presentation.ViewModel
         }
 
         /*Master detail - displays events for selected customer*/
-        private customer currentCustomer;
-        public customer CurrentCustomer
+        private CustomerModel currentCustomer;
+        public CustomerModel CurrentCustomer
         {
             get
             {
@@ -128,8 +129,8 @@ namespace Presentation.ViewModel
             }
         }
 
-        private donut currentDonut;
-        public donut CurrentDonut
+        private DonutModel currentDonut;
+        public DonutModel CurrentDonut
         {
             get
             {
@@ -172,5 +173,35 @@ namespace Presentation.ViewModel
         public ModelCommand DisplayPopUpCommand { get; private set; }
 
         public Action<string> MessageBoxShowDelegate { get; set; } = x => throw new ArgumentOutOfRangeException($"The delegate {nameof(MessageBoxShowDelegate)} must be assigned by the view layer");
+
+        public IEnumerable<DonutModel> GetDonutsModelsConverter()
+        {
+            List<Dictionary<string, string>> retrived = donutCRUD.GetDonutsInfo();
+            List<DonutModel> temp = new List<DonutModel>();
+
+            foreach (Dictionary<string, string> dict in retrived)
+            {
+                DonutModel t = new DonutModel();
+                t.Converter(dict);
+                temp.Add(t);
+            }
+            return temp;
+        }
+        public IEnumerable<CustomerModel> GetCustomersModelsConverter()
+        {
+            List<Dictionary<string, string>> retrived = CustomerCRUD.GetCustomersInfo();
+            List<CustomerModel> temp = new List<CustomerModel>();
+
+            foreach (Dictionary<string, string> dict in retrived)
+            {
+                CustomerModel t = new CustomerModel();
+                t.Converter(dict);
+                temp.Add(t);
+            }
+            return temp;
+        }
+
+
     }
+   
 }
